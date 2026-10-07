@@ -189,7 +189,7 @@ Linguagem de cédula: pílulas de raio pleno (100px) para toda ação e selo; ca
 
 ### Do:
 - **Do** reservar #26A17B para moeda, ícones, anéis e bordas de selo (texto pequeno em verde usa #1B7D61/#0E5A43).
-- **Do** apresentar o mascote sempre em disco verde com anel branco (tratamento idêntico ao badge da logo) — nunca branco-sobre-branco.
+- **Do** apresentar o mascote sempre em disco verde com anel branco (tratamento idêntico ao badge da logo) em TODA renderização da moeda MUSDT — nav, hero, cartões e peg, com badge a ~42% do diâmetro da moeda; nunca branco-sobre-branco e nunca só o mini-badge embutido no PNG.
 - **Do** usar IBM Plex Mono tabular para qualquer número on-chain e rótulos em caixa alta 11px/0.14em.
 - **Do** manter toda afirmação linkada ao Etherscan; a página nunca pede conexão de carteira.
 

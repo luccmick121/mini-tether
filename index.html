@@ -50,7 +50,7 @@ img{display:block}
 .nav{position:sticky;top:0;z-index:50;background:rgba(247,251,249,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
 .nav-in{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 28px;height:66px}
 .brand{display:flex;align-items:center;gap:11px;font-family:var(--disp);font-weight:800;font-size:18.5px;letter-spacing:-.01em;color:var(--ink)}
-.brand img{width:34px;height:34px}
+.brand img{width:38px;height:38px}
 .links{display:flex;gap:26px;font-size:14px;font-weight:600}
 .links a{color:var(--ink-2)}
 .links a:hover{color:var(--g600);text-decoration:none}
@@ -75,10 +75,15 @@ img{display:block}
 .btn-ghost:hover{border-color:var(--g500);color:var(--g600);text-decoration:none;transform:translateY(-1px)}
 .hero-vis{position:relative;display:flex;align-items:center;justify-content:center;min-height:380px;perspective:900px}
 .coin-stage{position:relative;will-change:transform}
-.coin-stage .coin{width:min(300px,60vw);height:auto;filter:drop-shadow(var(--shadow-coin));animation:float 6.5s ease-in-out infinite}
+.coin-stage .coin{width:min(320px,62vw);height:auto;filter:drop-shadow(var(--shadow-coin));animation:float 6.5s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.chip-mascot{position:absolute;left:-26px;bottom:8px;width:104px;height:104px;background:var(--g500);border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-soft)}
-.chip-mascot img{width:72px;height:72px}
+.chip-mascot{position:absolute;right:-18px;bottom:2px;width:118px;height:118px;background:var(--g500);border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-soft)}
+.chip-mascot img{width:82px;height:82px}
+/* badge do mascote sobre toda moeda MUSDT (padrão oficial: disco verde + anel branco) */
+.coinw{position:relative;display:inline-block;line-height:0}
+.coinbadge{position:absolute;right:-5%;bottom:-4%;width:46%;aspect-ratio:1;background:var(--g500);border:2.5px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-soft)}
+.coinbadge img{width:70%;height:auto}
+.brand .coinbadge{border-width:2px;right:-7%;bottom:-7%;box-shadow:none}
 .pill-peg{position:absolute;right:-14px;top:2px;background:#fff;border:1px solid var(--line);border-radius:100px;padding:9px 16px;font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--g900);box-shadow:var(--shadow-soft);white-space:nowrap}
 .pill-peg b{color:var(--g600);font-weight:600}
 
@@ -100,7 +105,7 @@ h2{font-family:var(--disp);font-weight:800;font-size:clamp(30px,4vw,44px);letter
 .why-copy p strong{color:var(--ink);font-weight:600}
 .pair{position:relative;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:56px 36px 40px;text-align:center;box-shadow:var(--shadow-soft)}
 .pair .row{display:flex;align-items:center;justify-content:center;gap:26px}
-.pair img{width:108px;height:108px;border-radius:50%}
+.pair img.coinbase{width:108px;height:108px;border-radius:50%;filter:drop-shadow(0 14px 24px rgba(14,90,67,.25))}
 .pair .eq{font-family:var(--disp);font-weight:800;font-size:44px;color:var(--g600)}
 .pair .cap{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-3);margin-top:26px}
 .pair .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--g900);color:#fff;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;border-radius:100px;padding:6px 14px;white-space:nowrap}
@@ -116,7 +121,8 @@ h2{font-family:var(--disp);font-weight:800;font-size:clamp(30px,4vw,44px);letter
 .peg-in{position:relative;text-align:center}
 .peg-eq{display:flex;align-items:center;justify-content:center;gap:30px;margin:48px 0 10px;flex-wrap:wrap}
 .peg-eq .tok{display:flex;flex-direction:column;align-items:center;gap:12px}
-.peg-eq .tok img{width:96px;height:96px;border-radius:50%;filter:drop-shadow(0 14px 24px rgba(14,90,67,.25))}
+.peg-eq .tok img.coinbase{width:96px;height:96px;border-radius:50%;filter:drop-shadow(0 14px 24px rgba(14,90,67,.25))}
+.peg-eq .tok .coinbadge img{width:70%}
 .peg-eq .tok .n{font-weight:700;font-size:15px}
 .peg-eq .tok .s{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
 .peg-eq .one{font-family:var(--disp);font-weight:800;font-size:clamp(64px,9vw,110px);letter-spacing:-.04em;color:var(--g600);line-height:1;font-variant-numeric:tabular-nums}
@@ -237,8 +243,8 @@ footer{background:var(--g900);color:var(--mint);padding:64px 28px 48px}
   .pair img{width:84px;height:84px}
   .addr{flex-direction:column;align-items:stretch}
   .addr .hex{min-width:0}
-  .chip-mascot{width:88px;height:88px;left:-8px}
-  .chip-mascot img{width:60px;height:60px}
+  .chip-mascot{width:96px;height:96px;right:-10px;bottom:0}
+  .chip-mascot img{width:66px;height:66px}
 }
 @media(prefers-reduced-motion:reduce){
   .coin-stage .coin{animation:none}
@@ -270,7 +276,7 @@ footer{background:var(--g900);color:var(--mint);padding:64px 28px 48px}
 <nav class="nav">
   <div class="nav-in">
     <a class="brand" href="#top" aria-label="Mini Tether home">
-      <img src="logo-96.png" alt="Mini Tether coin logo">Mini Tether
+      <span class="coinw"><img class="coinbase" src="logo-96.png" alt="Mini Tether coin logo"><span class="coinbadge"><img src="badge-mascote.png" alt=""></span></span>Mini Tether
     </a>
     <div class="links">
       <a href="#why">Why</a>
@@ -334,9 +340,9 @@ footer{background:var(--g900);color:var(--mint);padding:64px 28px 48px}
       <div class="pair rv">
         <span class="tag">SAME UNIT OF ACCOUNT</span>
         <div class="row">
-          <img src="logo-192.png" alt="Mini Tether (MUSDT) coin">
+          <span class="coinw"><img class="coinbase" src="logo-192.png" alt="Mini Tether (MUSDT) coin with mascot badge"><span class="coinbadge"><img src="badge-mascote.png" alt=""></span></span>
           <div class="eq">=</div>
-          <img src="usdt.png" alt="Tether USD (USDT) coin">
+          <img class="coinbase" src="usdt.png" alt="Tether USD (USDT) coin">
         </div>
         <div class="cap">MUSDT&ensp;↔&ensp;USDT · 6 decimals · tracks 1:1 on-chain</div>
       </div>
@@ -372,13 +378,13 @@ footer{background:var(--g900);color:var(--mint);padding:64px 28px 48px}
     </div>
     <div class="peg-eq rv">
       <div class="tok">
-        <img src="logo-192.png" alt="Mini Tether">
+        <span class="coinw"><img class="coinbase" src="logo-192.png" alt="Mini Tether coin with mascot badge"><span class="coinbadge"><img src="badge-mascote.png" alt=""></span></span>
         <div class="n">Mini Tether</div>
         <div class="s">MUSDT</div>
       </div>
       <div class="one">1.00<small>the peg</small></div>
       <div class="tok">
-        <img src="usdt.png" alt="Tether USD">
+        <img class="coinbase" src="usdt.png" alt="Tether USD">
         <div class="n">Tether USD</div>
         <div class="s">USDT</div>
       </div>

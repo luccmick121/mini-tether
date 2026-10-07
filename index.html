@@ -141,7 +141,9 @@ h2{font-family:var(--disp);font-weight:800;font-size:clamp(30px,4vw,44px);letter
 .mini-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:center}
 .badge-stage{position:relative;display:flex;align-items:center;justify-content:center}
 .badge-disc{width:min(300px,70vw);aspect-ratio:1;background:var(--g500);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-coin);position:relative}
-.badge-disc img{width:62%}
+.badge-disc img.coinbase{width:100%;height:auto;border-radius:50%;border:5px solid #fff;box-shadow:0 14px 30px rgba(11,61,46,.4)}
+.badge-disc .coinw{width:74%;line-height:0}
+.badge-disc .coinbadge{border-width:3px}
 .badge-disc::after{content:"";position:absolute;inset:-22px;border:1px dashed var(--g500);opacity:.45;border-radius:50%}
 .mini-copy p{color:var(--ink-2);margin-top:18px;max-width:32em}
 .mini-copy p strong{color:var(--ink);font-weight:600}
@@ -201,9 +203,9 @@ details[open]{border-color:var(--g500)}
 footer{background:var(--g900);color:var(--mint);padding:64px 28px 48px}
 .foot-in{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
 .foot-brand{display:flex;align-items:center;gap:14px}
-.foot-chip{width:52px;height:52px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.foot-chip img.coinbase{width:36px;height:36px;border-radius:50%}
-.foot-chip .coinbadge{border-width:2px;box-shadow:none}
+.foot-chip{width:56px;height:56px;flex-shrink:0;position:relative}
+.foot-chip img.coinbase{width:56px;height:56px;border-radius:50%;filter:drop-shadow(0 8px 18px rgba(0,0,0,.35))}
+.foot-chip .coinbadge{border-width:2px;box-shadow:0 4px 10px rgba(0,0,0,.3)}
 .foot-brand .nm{font-family:var(--disp);font-weight:800;font-size:19px;color:#fff}
 .foot-brand .ds{font-size:13px;color:var(--mint)}
 .foot-links{display:flex;gap:26px;font-size:14px;font-weight:600;flex-wrap:wrap}
@@ -415,7 +417,7 @@ footer{background:var(--g900);color:var(--mint);padding:64px 28px 48px}
   <div class="wrap">
     <div class="mini-grid">
       <div class="badge-stage rv">
-        <div class="badge-disc"><img src="badge-mascote.png" alt="The Mini Dollar — Mini Tether mascot badge"></div>
+        <div class="badge-disc"><span class="coinw"><img class="coinbase" src="logo-512.png" alt="Mini Tether coin with mascot badge" width="512" height="512"><span class="coinbadge"><img src="badge-mascote.png" alt=""></span></span></div>
       </div>
       <div class="mini-copy rv">
         <h2>Meet the Mini Dollar.</h2>

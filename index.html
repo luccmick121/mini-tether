@@ -1,1 +1,418 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=./musdt-add.html"><title>Mini Tether (MUSDT)</title></head><body></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mini Tether (MUSDT) — The Micro-Transaction Stablecoin</title>
+<meta name="description" content="MUSDT is a synthetic currency pegged to USDT, designed for micro-transactions, tipping, and everyday on-chain payments on Ethereum.">
+<link rel="icon" type="image/png" sizes="192x192" href="logo-192.png">
+<link rel="apple-touch-icon" href="logo-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#26A17B;--green-light:#2FC497;--green-bright:#5AD9A8;--green-dark:#188060;--green-deep:#0F5C46;
+  --bg:#060A0C;--bg-1:#0A1014;--bg-2:#0E161B;--surface:#121C22;--surface-2:#16232B;
+  --border:#1B2A33;--border-light:#253A46;
+  --text:#E8ECEF;--text-2:#9BA8B2;--text-3:#5F7280;
+  --radius:14px;--radius-lg:24px;
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden}
+::selection{background:var(--green);color:#fff}
+a{color:var(--green-bright);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(6,10,12,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+nav .inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px}
+nav .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--text)}
+nav .logo img{width:32px;height:32px;border-radius:50%}
+nav .links{display:flex;gap:28px;font-size:14px;font-weight:500}
+nav .links a{color:var(--text-2);transition:color .2s}
+nav .links a:hover{color:var(--text);text-decoration:none}
+nav .cta{background:var(--green);color:#fff;padding:8px 20px;border-radius:10px;font-size:14px;font-weight:600;transition:background .2s}
+nav .cta:hover{background:var(--green-light);text-decoration:none}
+
+/* ── HERO ── */
+.hero{min-height:92vh;display:flex;align-items:center;justify-content:center;position:relative;padding:120px 24px 80px}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(ellipse at center,rgba(38,161,123,.12) 0%,transparent 70%);pointer-events:none}
+.hero .inner{max-width:800px;text-align:center;position:relative;z-index:1}
+.hero .coin{width:140px;height:140px;margin:0 auto 32px;animation:float 5s ease-in-out infinite;filter:drop-shadow(0 20px 40px rgba(38,161,123,.3))}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero h1{font-size:clamp(36px,6vw,64px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:12px}
+.hero h1 .ticker{color:var(--green-bright)}
+.hero .tag{font-size:clamp(16px,2.5vw,22px);color:var(--text-2);font-weight:500;margin-bottom:36px;max-width:580px;margin-left:auto;margin-right:auto}
+.hero .actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.hero .btn-primary{background:var(--green);color:#fff;padding:16px 32px;border-radius:var(--radius);font-size:16px;font-weight:700;display:inline-flex;align-items:center;gap:10px;transition:all .2s;border:none;cursor:pointer}
+.hero .btn-primary:hover{background:var(--green-light);transform:translateY(-2px);box-shadow:0 8px 32px rgba(38,161,123,.35);text-decoration:none}
+.hero .btn-secondary{border:1px solid var(--border-light);color:var(--text);padding:16px 32px;border-radius:var(--radius);font-size:16px;font-weight:600;display:inline-flex;align-items:center;gap:10px;transition:all .2s}
+.hero .btn-secondary:hover{border-color:var(--green);color:var(--green-bright);text-decoration:none}
+.hero .stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap}
+.hero .stat{text-align:center}
+.hero .stat .val{font-size:28px;font-weight:800;color:var(--green-bright);font-family:var(--mono)}
+.hero .stat .lbl{font-size:13px;color:var(--text-3);font-weight:500;margin-top:2px}
+
+/* ── SECTIONS ── */
+section{max-width:1200px;margin:0 auto;padding:100px 24px}
+section h2{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.02em;text-align:center;margin-bottom:16px}
+section .sub{text-align:center;color:var(--text-2);font-size:17px;max-width:640px;margin:0 auto 60px}
+.tag-line{text-align:center;margin-bottom:56px}
+.tag-line span{display:inline-block;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:6px 20px;font-size:13px;font-weight:600;color:var(--green-bright);letter-spacing:.08em;text-transform:uppercase}
+
+/* ── FEATURES GRID ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px 28px;transition:border-color .3s}
+.card:hover{border-color:var(--green-dark)}
+.card .icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--green-deep);border-radius:12px;margin-bottom:20px;font-size:22px}
+.card h3{font-size:18px;font-weight:700;margin-bottom:10px;color:var(--text)}
+.card p{font-size:14.5px;color:var(--text-2);line-height:1.65}
+
+/* ── PEG VISUAL ── */
+.peg{background:var(--bg-1);border:1px solid var(--border);border-radius:var(--radius-lg);padding:48px;text-align:center}
+.peg .pair{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;margin:40px 0}
+.peg .token{display:flex;flex-direction:column;align-items:center;gap:12px}
+.peg .token img{width:72px;height:72px}
+.peg .token .name{font-weight:700;font-size:16px}
+.peg .token .sym{font-size:13px;color:var(--text-3);font-family:var(--mono)}
+.peg .equals{font-size:36px;font-weight:800;color:var(--green-bright)}
+.peg .ratio{font-size:56px;font-weight:800;color:var(--green-bright);font-family:var(--mono);letter-spacing:-.04em}
+.peg .ratio small{font-size:18px;color:var(--text-3);font-weight:500}
+
+/* ── TOKENOMICS ── */
+.tokenomics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.tm-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;text-align:center}
+.tm-card .label{font-size:12px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.tm-card .value{font-size:26px;font-weight:800;color:var(--text);font-family:var(--mono)}
+.tm-card .value.green{color:var(--green-bright)}
+.tm-card .contract{font-size:12px;font-family:var(--mono);color:var(--text-2);word-break:break-all;padding:8px;background:var(--bg);border-radius:8px;margin-top:8px;cursor:pointer;transition:color .2s}
+.tm-card .contract:hover{color:var(--green-bright)}
+
+/* ── HOW TO BUY ── */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;counter-reset:step}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px 28px;position:relative}
+.step::before{counter-increment:step;content:counter(step);position:absolute;top:-16px;left:28px;background:var(--green);color:#fff;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:10px;font-weight:800;font-size:15px}
+.step h3{font-size:17px;font-weight:700;margin:12px 0 10px}
+.step p{font-size:14px;color:var(--text-2)}
+.step a{font-size:14px;font-weight:600}
+
+/* ── FAQ ── */
+.faq{max-width:680px;margin:0 auto}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden}
+.faq-item summary{padding:20px 24px;font-size:16px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;transition:color .2s}
+.faq-item summary::after{content:'+';font-size:22px;color:var(--text-3);transition:transform .3s}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item[open] summary{color:var(--green-bright)}
+.faq-item .answer{padding:0 24px 20px;font-size:14.5px;color:var(--text-2);line-height:1.65}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:48px 24px;text-align:center}
+footer .coin{width:48px;height:48px;margin:0 auto 16px}
+footer .links{display:flex;gap:24px;justify-content:center;margin:20px 0;font-size:14px}
+footer .copy{font-size:13px;color:var(--text-3)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav .links{display:none}
+  .hero{padding-top:100px}
+  .hero .coin{width:100px;height:100px}
+  .hero .stats{gap:20px}
+  .hero .stat .val{font-size:22px}
+  .peg .pair{gap:20px}
+  .peg .ratio{font-size:40px}
+  section{padding:64px 20px}
+}
+
+/* ── MICRO ── */
+.divider{width:100%;max-width:1200px;margin:0 auto;height:1px;background:var(--border)}
+.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="logo">
+      <img src="logo-192.png" alt="MUSDT">
+      Mini Tether
+    </div>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#tokenomics">Tokenomics</a>
+      <a href="#how">Get MUSDT</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="cta" href="#how">Buy MUSDT</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="inner">
+    <img class="coin" src="logo-512.png" alt="Mini Tether coin">
+    <h1>Mini Tether <span class="ticker">($MUSDT)</span></h1>
+    <p class="tag">The micro-transaction stablecoin. Pegged to USDT. Built for everyday on-chain payments.</p>
+    <div class="actions">
+      <a class="btn-primary" href="#how">🪙 Get MUSDT</a>
+      <a class="btn-secondary" href="#about" style="text-decoration:none">Learn more ↓</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="val">1:1</div><div class="lbl">Pegged to USDT</div></div>
+      <div class="stat"><div class="val">100B</div><div class="lbl">Fixed Supply</div></div>
+      <div class="stat"><div class="val pulse">●</div><div class="lbl">Live on Ethereum</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="tag-line"><span>The Pitch</span></div>
+  <h2>Why MUSDT exists</h2>
+  <p class="sub">USDT is the world's most used stablecoin — but it wasn't designed for small payments.
+  MUSDT is its little sibling: same DNA, optimized for micro-transactions.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="icon">💡</div>
+      <h3>The Problem</h3>
+      <p>Sending $0.50 worth of USDT on Ethereum often costs more in gas than the payment itself. Micro-transactions — tips, in-game purchases, content paywalls, API pay-per-call — are economically unfeasible with existing stablecoins.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🪙</div>
+      <h3>The Solution</h3>
+      <p>MUSDT tracks USDT 1:1 through Uniswap V3 concentrated liquidity. Holders get USDT-price exposure in a token designed from the ground up for small-value, high-frequency use cases.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🔓</div>
+      <h3>Why It's Different</h3>
+      <p>Zero-tax. No admin functions. No pause. No blacklist. No mint. Fixed supply forever. The contract is verified on Etherscan and immutable — what you read is what runs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PEG ═══ -->
+<section id="peg">
+  <div class="tag-line"><span>The Peg</span></div>
+  <h2>1 MUSDT ≈ 1 USDT</h2>
+  <p class="sub">Maintained by concentrated liquidity on Uniswap V3. When MUSDT trades above $1, arbitrageurs sell. When below, they buy. The peg is enforced by market mechanics — not by a centralized reserve.</p>
+
+  <div class="peg">
+    <div class="pair">
+      <div class="token">
+        <img src="logo-192.png" alt="MUSDT">
+        <div class="name">Mini Tether</div>
+        <div class="sym">MUSDT</div>
+      </div>
+      <div class="equals">≈</div>
+      <div class="token">
+        <img src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png" alt="USDT" onerror="this.src='logo-96.png'">
+        <div class="name">Tether USD</div>
+        <div class="sym">USDT</div>
+      </div>
+    </div>
+    <div class="ratio">1.00<small> USD</small></div>
+    <p style="color:var(--text-3);font-size:13px;margin-top:12px">Pool: Uniswap V3 · 0.05% fee · <a href="https://etherscan.io/dex/uniV3/0xdac15c8b27cc1d0aec5c28f568d7664da0401ec7" style="font-size:13px" target="_blank" rel="noopener">View on Etherscan ↗</a></p>
+  </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section id="features">
+  <div class="tag-line"><span>Features</span></div>
+  <h2>Built for micro-transactions</h2>
+  <p class="sub">Every design decision optimizes for the same goal: make small-value on-chain payments practical.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="icon">⚡</div>
+      <h3>Micro-Friendly</h3>
+      <p>6 decimals — same precision as USDT. Perfect for splitting bills, tipping streamers, pay-per-API-call, and in-game economies where every cent matters.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🔗</div>
+      <h3>Tracks USDT</h3>
+      <p>Concentrated liquidity around $1.00 on Uniswap V3. Wherever USDT goes, MUSDT follows. Simple.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🛡️</div>
+      <h3>Zero Tax, Forever</h3>
+      <p>No transfer tax. No sell tax. No hidden fees. The contract has zero admin functions — it cannot be modified, paused, or exploited after deployment.</p>
+    </div>
+    <div class="card">
+      <div class="icon">💎</div>
+      <h3>Fixed Supply</h3>
+      <p>100 billion MUSDT. No minting, no burning, no inflation. The supply today is the supply in 2030. Scarcity by design.</p>
+    </div>
+    <div class="card">
+      <div class="icon">📜</div>
+      <h3>Verified & Immutable</h3>
+      <p>Source code verified on Etherscan. The contract is a mirror of the original TetherToken structure (same ABI family) minus the centralization — no pause, no blacklist, no upgrade path.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🤝</div>
+      <h3>Community First</h3>
+      <p>No team allocation, no VC lockups, no presale. The supply lives in the community treasury. Distribution is transparent and on-chain.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TOKENOMICS ═══ -->
+<section id="tokenomics">
+  <div class="tag-line"><span>Tokenomics</span></div>
+  <h2>Token details</h2>
+  <p class="sub">Everything on-chain, everything transparent.</p>
+
+  <div class="tokenomics">
+    <div class="tm-card">
+      <div class="label">Name</div>
+      <div class="value">Mini Tether</div>
+    </div>
+    <div class="tm-card">
+      <div class="label">Symbol</div>
+      <div class="value green">MUSDT</div>
+    </div>
+    <div class="tm-card">
+      <div class="label">Total Supply</div>
+      <div class="value">100,000,000,000</div>
+    </div>
+    <div class="tm-card">
+      <div class="label">Decimals</div>
+      <div class="value">6</div>
+    </div>
+    <div class="tm-card">
+      <div class="label">Network</div>
+      <div class="value">Ethereum</div>
+    </div>
+    <div class="tm-card" style="grid-column:1/-1">
+      <div class="label">Contract Address</div>
+      <div class="contract" onclick="copyContract(this)" title="Click to copy">0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7</div>
+      <p style="font-size:12px;color:var(--text-3);margin-top:8px">Click to copy · <a href="https://etherscan.io/token/0xdac15c8b27cc1d0aec5c28f568d7664da0401ec7" target="_blank" rel="noopener" style="font-size:12px">View on Etherscan ↗</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW TO BUY ═══ -->
+<section id="how">
+  <div class="tag-line"><span>Get Started</span></div>
+  <h2>How to get MUSDT</h2>
+  <p class="sub">From zero to MUSDT in under 5 minutes.</p>
+
+  <div class="steps">
+    <div class="step">
+      <h3>Get a Wallet</h3>
+      <p>Download <a href="https://metamask.io" target="_blank" rel="noopener">MetaMask</a>, <a href="https://trustwallet.com" target="_blank" rel="noopener">Trust Wallet</a>, or any EVM wallet.</p>
+    </div>
+    <div class="step">
+      <h3>Import the Token</h3>
+      <p>Click the button below or manually add contract address <code style="font-size:12px;color:var(--green-bright)">0xdAC1...1ec7</code> with 6 decimals.</p>
+    </div>
+    <div class="step">
+      <h3>Swap on Uniswap</h3>
+      <p>Trade USDT → MUSDT on <a href="https://app.uniswap.org/swap?outputCurrency=0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7" target="_blank" rel="noopener">Uniswap</a>. The pool is seeded 1:1 with USDT.</p>
+    </div>
+    <div class="step">
+      <h3>Use It</h3>
+      <p>Tip creators, pay for API calls, split bills on-chain, power your dApp's micro-economy. You're holding USDT-value in a micro-transaction native token.</p>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:48px">
+    <button class="btn-primary" style="font-size:18px;padding:20px 40px" onclick="addToken()">
+      🦊 Add MUSDT to Wallet
+    </button>
+    <p style="color:var(--text-3);font-size:13px;margin-top:12px">Works with MetaMask, Trust Wallet, OKX, and other EVM wallets</p>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq">
+  <div class="tag-line"><span>FAQ</span></div>
+  <h2>Frequently asked questions</h2>
+
+  <div class="faq">
+    <details class="faq-item">
+      <summary>Is MUSDT backed by real USDT?</summary>
+      <div class="answer">MUSDT is pegged to USDT via a Uniswap V3 concentrated liquidity pool. It is not a collateralized stablecoin — it's a synthetic tracking token. The peg is maintained by arbitrage mechanics, not by a reserve promise.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Why not just use USDT for micro-transactions?</summary>
+      <div class="answer">You can — and should for larger amounts. MUSDT is specifically designed as a complementary token for the micro-transaction vertical: tipping, gaming, pay-per-use APIs, and content monetization where the branding, community, and tokenomics favor small-value high-frequency flows.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Is the contract safe?</summary>
+      <div class="answer">The contract is a simplified mirror of the original TetherToken (same Solidity family, same ABI structure) with all administrative functions removed. No pause, no blacklist, no mint, no upgrade. It's verified on Etherscan — read the source yourself. The contract is immutable: what's deployed is what runs, forever.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Can the supply change?</summary>
+      <div class="answer">No. The total supply of 100 billion MUSDT is fixed in the constructor. There is no mint function. The supply cannot increase, ever.</div>
+    </details>
+    <details class="faq-item">
+      <summary>What keeps the price at $1?</summary>
+      <div class="answer">A Uniswap V3 pool with concentrated liquidity around $1.00. When MUSDT drifts above $1.00, arbitrage bots sell MUSDT into the pool for profit, pushing the price down. When it drifts below, they buy, pushing it up. This is the same mechanism that keeps all AMM-pegged tokens near their target.</div>
+    </details>
+    <details class="faq-item">
+      <summary>How is MUSDT distributed?</summary>
+      <div class="answer">The entire supply is held in the project treasury. There was no presale, no team allocation, and no VC round. Distribution happens through the liquidity pool and community programs. All movements are visible on Etherscan.</div>
+    </details>
+    <details class="faq-item">
+      <summary>What are the use cases?</summary>
+      <div class="answer"><strong>Tipping:</strong> reward content creators with USDT-value.<br><strong>Gaming:</strong> in-game currency backed by stablecoin value.<br><strong>API & Pay-per-use:</strong> metered payments for decentralized services.<br><strong>Content paywalls:</strong> micro-subscriptions and article unlocks.<br><strong>Remittance:</strong> small-value cross-border transfers.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Is this a memecoin?</summary>
+      <div class="answer">No — but it doesn't take itself too seriously either. MUSDT is a utility token with a clear purpose (micro-transactions), real infrastructure (verified contract, Uniswap pool), and transparent tokenomics. The mascot just makes it fun.</div>
+    </details>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <img class="coin" src="logo-96.png" alt="MUSDT">
+  <div style="font-weight:700;font-size:18px;margin-bottom:4px">Mini Tether</div>
+  <div style="color:var(--text-3);font-size:14px">The micro-transaction stablecoin</div>
+  <div class="links">
+    <a href="https://etherscan.io/token/0xdac15c8b27cc1d0aec5c28f568d7664da0401ec7" target="_blank" rel="noopener">Etherscan</a>
+    <a href="https://app.uniswap.org/swap?outputCurrency=0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7" target="_blank" rel="noopener">Uniswap</a>
+    <a href="https://luccmick121.github.io/mini-tether/musdt-add.html">Add to Wallet</a>
+    <a href="https://raw.githubusercontent.com/luccmick121/mini-tether/main/logo.png">Logo</a>
+  </div>
+  <div class="copy">© 2026 Mini Tether. MUSDT is a synthetic token that tracks USDT. Not financial advice. DYOR.</div>
+</footer>
+
+<script>
+// copiar contrato
+function copyContract(el) {
+  navigator.clipboard.writeText('0xdac15c8b27cc1d0aec5c28f568d7664da0401ec7').then(() => {
+    const orig = el.textContent;
+    el.textContent = '✓ Copied!';
+    el.style.color = '#5AD9A8';
+    setTimeout(() => { el.textContent = orig; el.style.color = ''; }, 1500);
+  });
+}
+// watchAsset
+async function addToken() {
+  if (!window.ethereum) { location.href = '/mini-tether/musdt-add.html'; return; }
+  try {
+    const r = await window.ethereum.request({
+      method: 'wallet_watchAsset',
+      params: { type: 'ERC20', options: {
+        address: '0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7',
+        symbol: 'MUSDT', decimals: 6,
+        image: 'https://raw.githubusercontent.com/luccmick121/mini-tether/main/logo.png'
+      }}
+    });
+    if (r) alert('✓ MUSDT added to your wallet!');
+    else alert('Token already in wallet or request cancelled.');
+  } catch (e) { location.href = '/mini-tether/musdt-add.html'; }
+}
+</script>
+</body>
+</html>

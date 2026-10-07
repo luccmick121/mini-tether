@@ -21,7 +21,7 @@
 	<img src="./logo.png" alt="MUSDT">
 	<h1>Mini Tether (MUSDT)</h1>
 	<p>0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7</p>
-	<button id="btn">🦊 Adicionar à MetaMask</button>
+	<button id="btn">🦊 Adicionar à carteira</button>
 	<div class="ok" id="ok">✓ Token adicionado com a logo!</div>
 	<div class="erro" id="erro"></div>
 </div>
@@ -36,10 +36,13 @@ const TOKEN = {
 	}
 };
 const ok = document.getElementById('ok'), erro = document.getElementById('erro');
+const TRUST_LINK = 'https://link.trustwallet.com/add_asset?asset=c60_t0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7';
+const isTrust = () => !!(window.ethereum && (window.ethereum.isTrust || window.ethereum.isTrustWallet)) || /Trust/i.test(navigator.userAgent);
 async function adicionar() {
 	erro.style.display = 'none';
+	if (isTrust()) { location.href = TRUST_LINK; return; }
 	if (!window.ethereum) {
-		erro.textContent = 'MetaMask não detectada — abra este link DENTRO do navegador da MetaMask (celular) ou com a extensão ativa (PC).';
+		erro.textContent = 'Carteira não detectada (abre no app da Trust ou com a MetaMask ativa) — abra este link DENTRO do navegador da MetaMask (celular) ou com a extensão ativa (PC).';
 		erro.style.display = 'block';
 		return;
 	}

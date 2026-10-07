@@ -202,7 +202,8 @@ footer{background:var(--g900);color:var(--mint);padding:64px 28px 48px}
 .foot-in{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
 .foot-brand{display:flex;align-items:center;gap:14px}
 .foot-chip{width:52px;height:52px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.foot-chip img{width:36px;height:36px}
+.foot-chip img.coinbase{width:36px;height:36px;border-radius:50%}
+.foot-chip .coinbadge{border-width:2px;box-shadow:none}
 .foot-brand .nm{font-family:var(--disp);font-weight:800;font-size:19px;color:#fff}
 .foot-brand .ds{font-size:13px;color:var(--mint)}
 .foot-links{display:flex;gap:26px;font-size:14px;font-weight:600;flex-wrap:wrap}
@@ -561,7 +562,7 @@ footer{background:var(--g900);color:var(--mint);padding:64px 28px 48px}
 <footer>
   <div class="foot-in">
     <div class="foot-brand">
-      <div class="foot-chip"><img src="logo-96.png" alt="Mini Tether"></div>
+      <div class="foot-chip"><span class="coinw"><img class="coinbase" src="logo-96.png" alt="Mini Tether"><span class="coinbadge"><img src="badge-mascote.png" alt=""></span></span></div>
       <div>
         <div class="nm">Mini Tether</div>
         <div class="ds">The micro-transaction token</div>

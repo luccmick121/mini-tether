@@ -18,16 +18,16 @@
 </head>
 <body>
 <div class="card">
-	<img src="./logo.png?v=4" alt="MUSDT">
+	<img src="./requisitos/etherscan-512.png" alt="MUSDT">
 	<h1>Mini Tether (MUSDT)</h1>
 	<p>0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7</p>
-	<button id="btn">🦊 Adicionar à carteira</button>
+	<button id="btn">Adicionar à carteira</button>
 	<div id="manual" style="display:none;text-align:left;font-size:14px;color:#8b949e;line-height:1.7">
-		<b style="color:#eee">🛡️ Adição manual (30s) — Trust/Bybit/outros:</b><br>
-		1. Toque em <b>✛ / Gerenciar cripto</b><br>
+		<b style="color:#eee">Adição manual (30s) — Trust/Bybit/outros:</b><br>
+		1. Toque em <b>Gerenciar cripto</b><br>
 		2. <b>+ Adicionar token personalizado</b> (Bybit: importar token)<br>
 		3. Rede: <b>Ethereum</b> · cole o contrato:<br>
-		<button id="copia" onclick="copiar()" style="background:#21262d;color:#eee;border:1px solid #30363d;font-size:13px;padding:10px;border-radius:8px;width:100%;margin:8px 0;cursor:pointer;word-break:break-all">📋 Copiar contrato</button>
+		<button id="copia" onclick="copiar()" style="background:#21262d;color:#eee;border:1px solid #30363d;font-size:13px;padding:10px;border-radius:8px;width:100%;margin:8px 0;cursor:pointer;word-break:break-all">Copiar contrato</button>
 		4. Nome <b>Mini Tether</b> · Símbolo <b>MUSDT</b> · Decimais <b>6</b> → <b>Importar</b><br>
 		<i>(os dados preenchem sozinhos ao colar o contrato — é verificado no Etherscan)</i>
 	</div>
@@ -41,7 +41,7 @@ const TOKEN = {
 		address: '0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7',
 		symbol: 'MUSDT',
 		decimals: 6,
-		image: 'https://raw.githubusercontent.com/luccmick121/mini-tether/main/logo.png'
+		image: 'https://minitether.duckdns.org/requisitos/etherscan-512.png'
 	}
 };
 const ok = document.getElementById('ok'), erro = document.getElementById('erro');
@@ -53,10 +53,10 @@ async function adicionar() {
 		// celular fora do app: abre ESTA página DENTRO do navegador da Trust (open_url)
 		// — lá o provider existe e o watchAsset dispara igual na MetaMask
 		const ehMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-		if (ehMobile && !location.search.includes('inapp=1')) {
-			location.href = 'https://link.trustwallet.com/open_url?coin_id=60&url=' + encodeURIComponent('https://luccmick121.github.io/mini-tether/musdt-add.html?inapp=1');
-			return;
-		}
+			if (ehMobile && !location.search.includes('inapp=1')) {
+				location.href = 'https://link.trustwallet.com/open_url?coin_id=60&url=' + encodeURIComponent('https://minitether.duckdns.org/musdt-add.html?inapp=1');
+				return;
+			}
 		manualTrust();
 		return;
 	}
@@ -80,8 +80,8 @@ function manualTrust() {
 }
 function copiar() {
 	navigator.clipboard.writeText('0xdac15c8b27cc1d0aec5c28f568d7664da0401ec7').then(() => {
-		document.getElementById('copia').textContent = '✓ Copiado!';
-		setTimeout(() => document.getElementById('copia').textContent = '📋 Copiar contrato', 2000);
+			document.getElementById('copia').textContent = '✓ Copiado!';
+			setTimeout(() => document.getElementById('copia').textContent = 'Copiar contrato', 2000);
 	});
 }
 window.addEventListener('load', () => setTimeout(adicionar, 400)); // dispara sozinho ao abrir

@@ -3,320 +3,609 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mini Tether — The Micro-Transaction Token</title>
-<meta name="description" content="MUSDT tracks USDT. Built for micro-transactions, tipping, and everyday on-chain payments on Ethereum.">
+<title>Mini Tether (MUSDT) — the micro-transaction token</title>
+<meta name="description" content="Mini Tether tracks USDT 1:1 on Ethereum. Fixed supply of 100 billion, zero tax, no mint, no pause — verified contract on Etherscan. Built for tipping, fractions and pay-per-use.">
+<meta property="og:title" content="Mini Tether (MUSDT) — the micro-transaction token">
+<meta property="og:description" content="Tracks USDT 1:1 on Ethereum. 100B fixed supply · zero tax · verified contract.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://minitether.duckdns.org/logo-512.png">
+<meta name="theme-color" content="#26A17B">
 <link rel="icon" type="image/png" sizes="192x192" href="logo-192.png">
 <link rel="apple-touch-icon" href="logo-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --green:#26A17B;--green-lt:#2FC497;--green-bg:#EDF7F3;--green-bg2:#E0F2EB;--green-deep:#188060;--green-dk:#0F5C46;
-  --bg:#FFFFFF;--bg-soft:#FAFCFB;--bg-green:#F2F9F6;
-  --ink:#0D1B14;--ink2:#3D5248;--ink3:#7A9186;
-  --line:#D9E8E1;--line2:#C4DCCF;
-  --r:12px;--r-lg:20px;
+  --g500:#26A17B;         /* Tether brand — coin, icons, large accents only */
+  --g600:#1B7D61;         /* links / accents on light surfaces (5.06:1) */
+  --g900:#0E5A43;         /* deep green fields carrying small white text (8.2:1) */
+  --mint:#CFE9DD;         /* light text on deep green (6.38:1) */
+  --mint-hi:#A9DEC8;      /* highlighted mono on deep green (5.45:1) */
+  --paper:#F7FBF9;
+  --paper-2:#EFF7F2;
+  --card:#FFFFFF;
+  --ink:#0C1F17;
+  --ink-2:#41564B;
+  --ink-3:#566B5F;        /* 5.5:1 on light surfaces */
+  --line:#D7E7DE;
+  --line-soft:#E4F0E9;
+  --shadow-coin:0 28px 60px -18px rgba(14,90,67,.38);
+  --shadow-soft:0 10px 30px -12px rgba(14,90,67,.22);
+  --disp:'Bricolage Grotesque',Georgia,serif;
+  --body:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
-::selection{background:var(--green);color:#fff}
-a{color:var(--green-deep);text-decoration:none}
-a:hover{text-decoration:underline}
+body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:16px}
+::selection{background:var(--g500);color:#fff}
+:focus-visible{outline:2px solid var(--g500);outline-offset:3px;border-radius:4px}
+a{color:var(--g600);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
 img{display:block}
+.icon{stroke:var(--g500);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 
-/* ── NAV ── */
-.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.nav-in{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:68px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:var(--ink)}
+/* ───────── nav ───────── */
+.nav{position:sticky;top:0;z-index:50;background:rgba(247,251,249,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
+.nav-in{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 28px;height:66px}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--disp);font-weight:800;font-size:18.5px;letter-spacing:-.01em;color:var(--ink)}
 .brand img{width:34px;height:34px}
-.links{display:flex;gap:28px;font-size:14px;font-weight:600}
-.links a{color:var(--ink2)}
-.links a:hover{color:var(--green-deep);text-decoration:none}
+.links{display:flex;gap:26px;font-size:14px;font-weight:600}
+.links a{color:var(--ink-2)}
+.links a:hover{color:var(--g600);text-decoration:none}
+.nav-cta{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:var(--g900);border:1.5px solid var(--g500);border-radius:100px;padding:8px 16px;transition:background .15s,color .15s}
+.nav-cta:hover{background:var(--g900);color:#fff;text-decoration:none}
+.nav-cta svg{width:13px;height:13px}
 
-/* ── HERO ── */
-.hero{background:linear-gradient(160deg,var(--bg-green) 0%,var(--bg) 60%);padding:96px 28px 72px;overflow:hidden}
-.hero-in{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.hero-txt h1{font-size:clamp(38px,5vw,58px);font-weight:800;letter-spacing:-.03em;line-height:1.05;color:var(--ink)}
-.hero-txt h1 span{color:var(--green)}
-.hero-txt .tag{font-size:clamp(16px,2vw,19px);color:var(--ink2);font-weight:500;margin:18px 0 0;max-width:440px}
-.hero-vis{display:flex;align-items:center;justify-content:center;gap:32px}
-.hero-vis .coin{width:230px;height:230px;filter:drop-shadow(0 24px 48px rgba(38,161,123,.22))}
-.hero-vis .mascot{width:110px;height:110px;filter:drop-shadow(0 12px 28px rgba(15,92,70,.18));margin-top:60px}
-@media(max-width:820px){
-  .hero-in{grid-template-columns:1fr;text-align:center}
-  .hero-txt .tag{margin:16px auto 0}
-  .hero-vis{flex-direction:column;gap:20px}
-  .hero-vis .mascot{margin-top:0}
-}
+/* ───────── hero ───────── */
+.hero{position:relative;overflow:hidden;background:linear-gradient(168deg,var(--paper-2) 0%,var(--paper) 55%)}
+.hero-ring{position:absolute;pointer-events:none}
+.hero-in{position:relative;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:88px 28px 96px}
+.hero h1{font-family:var(--disp);font-weight:800;font-size:clamp(42px,5.6vw,72px);line-height:1.02;letter-spacing:-.035em}
+.hero h1 em{font-style:normal;color:var(--g600)}
+.hero .lede{font-size:clamp(16px,1.8vw,18.5px);color:var(--ink-2);max-width:33em;margin-top:22px}
+.hero .lede strong{color:var(--ink);font-weight:600}
+.cta-row{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:600;border-radius:100px;padding:14px 26px;transition:transform .15s,background .15s,border-color .15s}
+.btn svg{width:15px;height:15px}
+.btn-primary{background:var(--g900);color:#fff}
+.btn-primary:hover{background:#14604A;text-decoration:none;transform:translateY(-1px)}
+.btn-ghost{border:1.5px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--g500);color:var(--g600);text-decoration:none;transform:translateY(-1px)}
+.hero-vis{position:relative;display:flex;align-items:center;justify-content:center;min-height:380px;perspective:900px}
+.coin-stage{position:relative;will-change:transform}
+.coin-stage .coin{width:min(300px,60vw);height:auto;filter:drop-shadow(var(--shadow-coin));animation:float 6.5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.chip-mascot{position:absolute;left:-26px;bottom:8px;width:104px;height:104px;background:var(--g500);border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-soft)}
+.chip-mascot img{width:72px;height:72px}
+.pill-peg{position:absolute;right:-14px;top:2px;background:#fff;border:1px solid var(--line);border-radius:100px;padding:9px 16px;font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--g900);box-shadow:var(--shadow-soft);white-space:nowrap}
+.pill-peg b{color:var(--g600);font-weight:600}
 
-/* ── BADGE ── */
-.badge-strip{background:var(--green);color:#fff;padding:14px 28px;text-align:center;font-size:13px;font-weight:600;letter-spacing:.06em}
-.badge-strip a{color:#D4F1E6;text-decoration:underline}
+/* ───────── facts strip (static seal band) ───────── */
+.strip{background:var(--g900);padding:14px 28px;border-block:1px solid #0A4735;text-align:center}
+.strip span{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.13em;color:var(--mint);line-height:2;white-space:normal}
+.strip b{color:#fff;font-weight:500}
 
-/* ── SECTION ── */
-section{max-width:1120px;margin:0 auto;padding:88px 28px}
-.label{display:inline-block;background:var(--green-bg);color:var(--green-deep);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:100px;padding:6px 16px;margin-bottom:18px}
-h2{font-size:clamp(28px,4vw,38px);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
-.sub{font-size:16.5px;color:var(--ink2);max-width:580px;line-height:1.65}
-.center{text-align:center}
-.center .sub{margin:0 auto 48px}
+/* ───────── shared section rhythm ───────── */
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+section{padding:104px 0}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(30px,4vw,44px);letter-spacing:-.03em;line-height:1.08}
+.sec-sub{font-size:17px;color:var(--ink-2);max-width:38em;margin-top:16px}
+.sec-sub strong{color:var(--ink);font-weight:600}
 
-/* ── MEET ── */
-.meet{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px}
-.meet-card{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-lg);padding:44px 36px;text-align:center;transition:transform .2s,border-color .2s}
-.meet-card:hover{transform:translateY(-3px);border-color:var(--green)}
-.meet-card img{width:96px;height:96px;margin:0 auto 20px;filter:drop-shadow(0 8px 20px rgba(38,161,123,.15))}
-.meet-card h3{font-size:17px;font-weight:700;margin-bottom:8px;color:var(--ink)}
-.meet-card p{font-size:14px;color:var(--ink2);max-width:280px;margin:0 auto}
-.meet-card .tag-sym{font-family:ui-monospace,'SF Mono',monospace;font-size:13px;color:var(--green-deep);font-weight:600;margin-bottom:4px;display:block}
-@media(max-width:768px){.meet{grid-template-columns:1fr}}
+/* ───────── why ───────── */
+.why-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.why-copy p{color:var(--ink-2);margin-top:18px;max-width:36em}
+.why-copy p strong{color:var(--ink);font-weight:600}
+.pair{position:relative;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:56px 36px 40px;text-align:center;box-shadow:var(--shadow-soft)}
+.pair .row{display:flex;align-items:center;justify-content:center;gap:26px}
+.pair img{width:108px;height:108px;border-radius:50%}
+.pair .eq{font-family:var(--disp);font-weight:800;font-size:44px;color:var(--g600)}
+.pair .cap{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-3);margin-top:26px}
+.pair .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--g900);color:#fff;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;border-radius:100px;padding:6px 14px;white-space:nowrap}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:72px;border-top:1px solid var(--line)}
+.fact{padding:30px 26px 6px;border-left:1px solid var(--line)}
+.fact:first-child{border-left:none;padding-left:0}
+.fact .v{font-family:var(--disp);font-weight:800;font-size:clamp(30px,3.4vw,42px);letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.fact .v small{font-size:.42em;color:var(--g600);font-weight:700;letter-spacing:0}
+.fact .k{font-size:13.5px;color:var(--ink-3);margin-top:6px;max-width:24em}
 
-/* ── PEG ── */
-.peg-box{background:var(--green-bg);border-radius:var(--r-lg);padding:56px 40px;text-align:center;margin-top:8px;border:1px solid var(--line)}
-.peg-pair{display:flex;align-items:center;justify-content:center;gap:48px;margin:36px 0;flex-wrap:wrap}
-.peg-tok{display:flex;flex-direction:column;align-items:center;gap:10px}
-.peg-tok img{width:76px;height:76px}
-.peg-tok .n{font-weight:700;font-size:15px;color:var(--ink)}
-.peg-tok .s{font-size:12px;color:var(--ink3);font-family:ui-monospace,monospace}
-.peg-eq{font-size:36px;font-weight:800;color:var(--green)}
-.peg-val{font-size:58px;font-weight:800;color:var(--green);letter-spacing:-.04em;font-family:ui-monospace,'SF Mono',monospace}
-.peg-val small{font-size:18px;color:var(--ink3);font-weight:400}
-.peg-lnk{font-size:13px;color:var(--ink3);margin-top:14px}
-.peg-lnk a{font-weight:600;color:var(--green-deep)}
+/* ───────── peg ───────── */
+.peg{background:var(--paper-2);border-block:1px solid var(--line-soft);position:relative;overflow:hidden}
+.peg-in{position:relative;text-align:center}
+.peg-eq{display:flex;align-items:center;justify-content:center;gap:30px;margin:48px 0 10px;flex-wrap:wrap}
+.peg-eq .tok{display:flex;flex-direction:column;align-items:center;gap:12px}
+.peg-eq .tok img{width:96px;height:96px;border-radius:50%;filter:drop-shadow(0 14px 24px rgba(14,90,67,.25))}
+.peg-eq .tok .n{font-weight:700;font-size:15px}
+.peg-eq .tok .s{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+.peg-eq .one{font-family:var(--disp);font-weight:800;font-size:clamp(64px,9vw,110px);letter-spacing:-.04em;color:var(--g600);line-height:1;font-variant-numeric:tabular-nums}
+.peg-eq .one small{display:block;font-family:var(--body);font-weight:600;font-size:13px;letter-spacing:.14em;color:var(--ink-3);margin-top:10px;text-transform:uppercase}
+.cycle{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:18px;align-items:stretch;max-width:880px;margin:56px auto 0;text-align:left}
+.cycle .step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 22px}
+.cycle .step h3{font-size:14.5px;font-weight:700;display:flex;align-items:center;gap:10px}
+.cycle .step h3 svg{width:19px;height:19px;flex-shrink:0}
+.cycle .step p{font-size:13.5px;color:var(--ink-2);margin-top:8px;line-height:1.55}
+.cycle .arr{align-self:center;color:var(--g600)}
+.cycle .arr svg{width:22px;height:22px;stroke:currentColor}
+.peg-link{margin-top:40px;font-size:14px;color:var(--ink-3)}
+.peg-link a{font-weight:600}
 
-/* ── FEATURES ── */
-.feat-wrap{background:var(--bg-green);border-radius:var(--r-lg);padding:56px 48px;margin:0 28px;max-width:1064px}
-@media(max-width:768px){.feat-wrap{padding:36px 24px;margin:0 16px}}
-.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:40px}
-.f-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px 24px}
-.f-card .ic{width:36px;height:36px;margin-bottom:14px}
-.f-card .ic svg{width:36px;height:36px;stroke:var(--green);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.f-card h3{font-size:15px;font-weight:700;margin-bottom:6px;color:var(--ink)}
-.f-card p{font-size:13.5px;color:var(--ink2);line-height:1.55}
+/* ───────── mascot ───────── */
+.mini-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:center}
+.badge-stage{position:relative;display:flex;align-items:center;justify-content:center}
+.badge-disc{width:min(300px,70vw);aspect-ratio:1;background:var(--g500);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-coin);position:relative}
+.badge-disc img{width:62%}
+.badge-disc::after{content:"";position:absolute;inset:-22px;border:1px dashed var(--g500);opacity:.45;border-radius:50%}
+.mini-copy p{color:var(--ink-2);margin-top:18px;max-width:32em}
+.mini-copy p strong{color:var(--ink);font-weight:600}
+.mini-quoteline{margin-top:30px;display:inline-block;border:1.5px solid var(--g500);border-radius:100px;padding:12px 24px;font-family:var(--disp);font-weight:700;font-size:16.5px;line-height:1.3;color:var(--g900)}
 
-/* ── TOKEN ── */
-.tk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-top:44px}
-.tk{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px 20px;text-align:center}
-.tk .l{font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
-.tk .v{font-size:19px;font-weight:800;color:var(--ink)}
-.tk .v.gr{color:var(--green-deep)}
-.tk-addr{grid-column:1/-1;background:var(--ink);border-radius:var(--r-lg);padding:28px;text-align:center;border:none}
-.tk-addr .l{color:#8FA898}
-.tk-addr .hex{font-family:ui-monospace,'SF Mono',monospace;font-size:15px;color:var(--green-lt);cursor:pointer;transition:color .15s}
-.tk-addr .hex:hover{color:#7DDCB8}
-.tk-addr .lk{font-size:12px;color:#6B8A78;margin-top:8px}
-.tk-addr .lk a{color:var(--green-lt);font-weight:600}
+/* ───────── features ───────── */
+.feat-head{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.feat-list{display:grid;grid-template-columns:1fr 1fr;column-gap:72px;margin-top:56px}
+.feat{display:flex;gap:20px;padding:30px 0;border-top:1px solid var(--line)}
+.feat svg{width:30px;height:30px;flex-shrink:0;margin-top:3px}
+.feat h3{font-size:16.5px;font-weight:700;letter-spacing:-.01em}
+.feat p{font-size:14.5px;color:var(--ink-2);margin-top:7px;line-height:1.6;max-width:30em}
 
-/* ── FAQ ── */
-.faq-list{max-width:620px;margin:0 auto}
-details{background:#fff;border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
-summary{padding:18px 22px;font-size:15px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;color:var(--ink)}
+/* ───────── how ───────── */
+.how{background:var(--g900);color:#fff;position:relative;overflow:hidden}
+.how h2{color:#fff}
+.how .sec-sub{color:var(--mint)}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:64px}
+.how-step{padding:0 34px;border-left:1px solid rgba(207,233,221,.22)}
+.how-step:first-child{border-left:none;padding-left:0}
+.how-step .num{font-family:var(--disp);font-weight:800;font-size:56px;line-height:1;color:var(--mint-hi);font-variant-numeric:tabular-nums}
+.how-step h3{font-size:17px;font-weight:700;margin-top:16px;color:#fff}
+.how-step p{font-size:14.5px;color:var(--mint);margin-top:10px;line-height:1.65}
+.how-step p a{color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.how-note{margin-top:56px;display:inline-flex;align-items:center;gap:11px;background:rgba(207,233,221,.1);border:1px solid rgba(207,233,221,.25);border-radius:100px;padding:11px 20px;font-size:13.5px;color:var(--mint)}
+.how-note svg{width:17px;height:17px;stroke:var(--mint-hi)}
+
+/* ───────── token ───────── */
+.token-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;border-top:1px solid var(--line)}
+.spec{padding:26px 30px 26px 0;border-bottom:1px solid var(--line)}
+.spec:nth-child(3n+2){padding-left:30px;border-left:1px solid var(--line)}
+.spec:nth-child(3n){padding-left:30px;border-left:1px solid var(--line)}
+.spec dt{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.spec dd{font-family:var(--disp);font-weight:700;font-size:21px;letter-spacing:-.01em;margin-top:8px;font-variant-numeric:tabular-nums}
+.addr{margin-top:40px;background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:26px 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.addr .lbl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--ink-3)}
+.addr .hex{font-family:var(--mono);font-size:clamp(13px,1.6vw,16px);font-weight:500;color:var(--g900);word-break:break-all;flex:1;min-width:220px}
+.copy-btn{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:#fff;background:var(--g900);border:none;border-radius:100px;padding:10px 18px;cursor:pointer;transition:background .15s}
+.copy-btn:hover{background:#14604A}
+.copy-btn svg{width:14px;height:14px;stroke:#fff}
+.addr .ext{font-size:13.5px;font-weight:600}
+
+/* ───────── faq ───────── */
+.faq{background:var(--paper-2);border-block:1px solid var(--line-soft)}
+.faq-list{max-width:680px;margin:48px auto 0}
+details{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:10px;overflow:hidden}
+summary{padding:19px 24px;font-size:15.5px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--ink)}
 summary::-webkit-details-marker{display:none}
-summary .pm{width:20px;height:20px;display:flex;align-items:center;justify-content:center;color:var(--ink3);font-weight:400;font-size:18px;transition:transform .25s;flex-shrink:0}
-details[open] summary .pm{transform:rotate(45deg)}
-details[open]{border-color:var(--green)}
-details[open] summary{color:var(--green-deep)}
-.ans{padding:0 22px 18px;font-size:14px;color:var(--ink2);line-height:1.6}
+summary .pm{width:22px;height:22px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--g600)}
+summary .pm svg{width:16px;height:16px;transition:transform .25s}
+details[open] summary .pm svg{transform:rotate(45deg)}
+details[open]{border-color:var(--g500)}
+.ans{padding:0 24px 20px;font-size:14.5px;color:var(--ink-2);line-height:1.7;max-width:60ch}
+.ans a{font-weight:600}
 
-/* ── FOOTER ── */
-footer{background:var(--green-bg2);border-top:1px solid var(--line2);padding:52px 28px;text-align:center}
-footer img{width:44px;height:44px;margin:0 auto 14px}
-footer .nm{font-weight:800;font-size:17px;color:var(--ink)}
-footer .ds{font-size:13px;color:var(--ink3);margin-bottom:20px}
-footer .lks{display:flex;gap:22px;justify-content:center;font-size:13.5px;font-weight:600;flex-wrap:wrap}
-footer .lks a{color:var(--ink2)}
-footer .lks a:hover{color:var(--green-deep);text-decoration:none}
-footer .cp{font-size:12px;color:var(--ink3);margin-top:20px}
+/* ───────── footer ───────── */
+footer{background:var(--g900);color:var(--mint);padding:64px 28px 48px}
+.foot-in{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
+.foot-brand{display:flex;align-items:center;gap:14px}
+.foot-chip{width:52px;height:52px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.foot-chip img{width:36px;height:36px}
+.foot-brand .nm{font-family:var(--disp);font-weight:800;font-size:19px;color:#fff}
+.foot-brand .ds{font-size:13px;color:var(--mint)}
+.foot-links{display:flex;gap:26px;font-size:14px;font-weight:600;flex-wrap:wrap}
+.foot-links a{color:var(--mint)}
+.foot-links a:hover{color:#fff}
+.foot-cp{max-width:1120px;margin:44px auto 0;padding-top:24px;border-top:1px solid rgba(207,233,221,.18);font-size:12.5px;color:var(--mint);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
-@media(max-width:768px){
+/* ───────── reveal ───────── */
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
+.js .rv.in{opacity:1;transform:none}
+
+/* ───────── responsive ───────── */
+@media(max-width:900px){
+  .hero-in{grid-template-columns:1fr;text-align:center;padding-top:56px}
+  .hero .lede{margin-inline:auto}
+  .cta-row{justify-content:center}
+  .hero-vis{min-height:340px;margin-top:8px}
+  .why-grid,.mini-grid{grid-template-columns:1fr;gap:48px}
+  .facts{grid-template-columns:1fr;border-top:none}
+  .fact{border-left:none;border-top:1px solid var(--line);padding:22px 0 18px}
+  .fact:first-child{border-top:1px solid var(--line)}
+  .cycle{grid-template-columns:1fr}
+  .cycle .arr{display:none}
+  .how-grid{grid-template-columns:1fr;gap:36px}
+  .how-step{border-left:none;padding:0}
+  .token-grid{grid-template-columns:1fr 1fr}
+  .spec:nth-child(3n+2){padding-left:0;border-left:none}
+  .spec:nth-child(3n){padding-left:24px;border-left:1px solid var(--line)}
+  .feat-list{grid-template-columns:1fr;column-gap:0}
+}
+@media(max-width:640px){
   .links{display:none}
-  section{padding:64px 20px}
-  .peg-box{padding:36px 20px}
-  .peg-val{font-size:42px}
-  .hero{padding:64px 20px 48px}
-  .hero-vis .coin{width:170px;height:170px}
-  .hero-vis .mascot{width:80px;height:80px}
+  section{padding:76px 0}
+  .token-grid{grid-template-columns:1fr}
+  .spec:nth-child(3n){padding-left:0;border-left:none}
+  .spec{padding-right:0}
+  .pair .row{gap:16px}
+  .pair img{width:84px;height:84px}
+  .addr{flex-direction:column;align-items:stretch}
+  .addr .hex{min-width:0}
+  .chip-mascot{width:88px;height:88px;left:-8px}
+  .chip-mascot img{width:60px;height:60px}
+}
+@media(prefers-reduced-motion:reduce){
+  .coin-stage .coin{animation:none}
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none;transition:none}
 }
 </style>
 </head>
 <body>
+<!--
+  DIRECTION CONTRACT · Mini Tether landing · 2026-10-07
+  THESIS: the coin itself is the proof — a mint-note world (paper, guilloché rings,
+  Tether green committed in whole fields) that refuses the landing-token template
+  of kicker labels, identical icon-cards and metric heroes.
+  OWN-WORLD: paper #F7FBF9 / deep green #0E5A43 fields / hairlines #D7E7DE;
+  display Bricolage Grotesque 800; data in IBM Plex Mono tabular; concentric-ring
+  guilloché; full-radius pills; offset+blur green shadows; authored stroke-2 icons.
+  STORY: visitor sees a real coin worth one USDT, sized for the small stuff —
+  meets the mascot — reads the peg mechanics — verifies everything on Etherscan.
+  FIRST VIEWPORT: two columns; left H1 display + one-line lede + two CTAs;
+  right the 300px coin floating over guilloché rings with mascot chip and 1:1 pill.
+  FORM: elevation of the pinned Tether world (brand assets fixed by operator);
+  no direction roll (unattended session, world pre-committed). SEED: MINTNOTE-GUILLOCHE.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the
+  finish review, the verdict, DESIGN.md, and every shipping raster carrying its
+  provenance.
+-->
 
 <nav class="nav">
   <div class="nav-in">
-    <div class="brand"><img src="logo-96.png" alt="MUSDT"> Mini Tether</div>
+    <a class="brand" href="#top" aria-label="Mini Tether home">
+      <img src="logo-96.png" alt="Mini Tether coin logo">Mini Tether
+    </a>
     <div class="links">
       <a href="#why">Why</a>
       <a href="#peg">The Peg</a>
+      <a href="#mini">Mascot</a>
       <a href="#features">Features</a>
-      <a href="#token">Token</a>
+      <a href="#how">How</a>
       <a href="#faq">FAQ</a>
     </div>
+    <a class="nav-cta" href="https://etherscan.io/token/0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7" target="_blank" rel="noopener">
+      Etherscan
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="stroke:currentColor"><path d="M7 17L17 7M9 7h8v8"/></svg>
+    </a>
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
+<!-- ═════════ HERO ═════════ -->
+<header class="hero" id="top">
+  <svg class="hero-ring" viewBox="0 0 900 900" aria-hidden="true" style="top:-320px;right:-260px;width:820px;height:820px;opacity:.5">
+    <g fill="none" stroke="#26A17B" stroke-opacity=".13">
+      <circle cx="450" cy="450" r="120"/><circle cx="450" cy="450" r="180"/><circle cx="450" cy="450" r="240"/><circle cx="450" cy="450" r="300"/><circle cx="450" cy="450" r="360"/><circle cx="450" cy="450" r="420"/>
+    </g>
+  </svg>
   <div class="hero-in">
-    <div class="hero-txt">
-      <h1>Mini Tether<br><span>The micro-transaction token</span></h1>
-      <p class="tag">A digital currency that tracks USDT, designed for tipping, micro-payments, and everyday on-chain transactions on Ethereum.</p>
+    <div>
+      <h1>A whole dollar, <em>sized for the small&nbsp;stuff.</em></h1>
+      <p class="lede"><strong>Mini Tether (MUSDT)</strong> tracks USDT 1:1 on Ethereum: the same unit of account and the same 6-decimal precision, branded for tipping, fractions of a cent and pay-per-use flows.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://etherscan.io/token/0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7" target="_blank" rel="noopener">
+          View on Etherscan
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="stroke:#fff"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#how">How to verify it</a>
+      </div>
     </div>
     <div class="hero-vis">
-      <img class="coin" src="logo-512.png" alt="Mini Tether coin">
-      <img class="mascot" src="badge-mascote.png" alt="MUSDT mascot">
+      <div class="coin-stage" id="coinStage">
+        <img class="coin" src="logo-512.png" alt="Mini Tether coin — T monogram with mascot badge" width="512" height="512">
+        <div class="pill-peg">1 MUSDT <b>=</b> 1 USDT</div>
+        <div class="chip-mascot"><img src="badge-mascote.png" alt="Mini Tether mascot badge"></div>
+      </div>
     </div>
   </div>
+</header>
+
+<!-- ═════════ STRIP ═════════ -->
+<div class="strip" aria-label="Key facts">
+  <span>1 MUSDT = 1 USDT&ensp;·&ensp;FIXED SUPPLY <b>100 BILLION</b>&ensp;·&ensp;ZERO TAX&ensp;·&ensp;NO MINT · NO PAUSE · NO BLACKLIST&ensp;·&ensp;<b>VERIFIED ON ETHERSCAN</b>&ensp;·&ensp;ETHEREUM MAINNET</span>
 </div>
 
-<div class="badge-strip">VERIFIED ON ETHERSCAN · FIXED SUPPLY · ZERO TAX · <a href="https://etherscan.io/token/0xdac15c8b27cc1d0aec5c28f568d7664da0401ec7" target="_blank" rel="noopener">VIEW CONTRACT</a></div>
-
-<!-- MEET -->
+<!-- ═════════ WHY ═════════ -->
 <section id="why">
-  <div class="center">
-    <span class="label">Why MUSDT</span>
-    <h2>Two tokens. One mission.</h2>
-    <p class="sub">MUSDT is the micro-transaction layer of the Tether ecosystem — same value, smaller denomination, built for the payments that matter most.</p>
-  </div>
-  <div class="meet">
-    <div class="meet-card">
-      <img src="logo-192.png" alt="MUSDT coin">
-      <span class="tag-sym">MUSDT</span>
-      <h3>The Token</h3>
-      <p>Mini Tether mirrors USDT's value through a 1:1 peg on Uniswap V3. Same precision (6 decimals), same stability, designed for high-frequency micro-flows.</p>
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-copy rv">
+        <h2>Why another tether?</h2>
+        <p>USDT is the dollar of on-chain finance, built for reserves, settlement and size. But most of what happens on-chain is <strong>small</strong>: a tip, a fraction of a cent per API call, a game item, a retry fee.</p>
+        <p>Mini Tether exists for that traffic. It is a <strong>mirror of USDT's unit</strong> (same value, same 6-decimal precision) inside a brand that belongs to the micro world, with a mascot, a fixed supply and nothing else attached.</p>
+        <p>No tax, no admin power over balances, no story about replacing anything: small money, done properly.</p>
+      </div>
+      <div class="pair rv">
+        <span class="tag">SAME UNIT OF ACCOUNT</span>
+        <div class="row">
+          <img src="logo-192.png" alt="Mini Tether (MUSDT) coin">
+          <div class="eq">=</div>
+          <img src="usdt.png" alt="Tether USD (USDT) coin">
+        </div>
+        <div class="cap">MUSDT&ensp;↔&ensp;USDT · 6 decimals · tracks 1:1 on-chain</div>
+      </div>
     </div>
-    <div class="meet-card">
-      <img src="badge-mascote.png" alt="MUSDT mascot" style="width:96px;height:96px;border-radius:50%;margin:0 auto 20px;display:block">
-      <span class="tag-sym">THE MASCOT</span>
-      <h3>The Mini Dollar</h3>
-      <p>The face of micro-transactions. Small, fast, and always ready to work — the mascot represents every fraction of a dollar moving on-chain.</p>
+    <div class="facts rv">
+      <div class="fact">
+        <div class="v">6<small>&nbsp;DECIMALS</small></div>
+        <div class="k">Identical to USDT: split a cent, price a fraction, settle dust.</div>
+      </div>
+      <div class="fact">
+        <div class="v">100<small>&nbsp;BILLION</small></div>
+        <div class="k">Set once at deploy and immutable: the contract has no mint function.</div>
+      </div>
+      <div class="fact">
+        <div class="v">0<small>%&nbsp;TAX</small></div>
+        <div class="k">Nothing is deducted on transfers; the contract carries no fee mechanism.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PEG -->
-<section id="peg" style="padding-top:0">
-  <div class="center">
-    <span class="label">The Peg</span>
-    <h2>Backed by market mechanics</h2>
-    <p class="sub">MUSDT tracks USDT through a concentrated liquidity pool. When the price drifts, arbitrage brings it back — no centralized reserve, no counterparty risk.</p>
-  </div>
-  <div class="peg-box">
-    <div class="peg-pair">
-      <div class="peg-tok">
-        <img src="logo-192.png" alt="MUSDT">
+<!-- ═════════ PEG ═════════ -->
+<section class="peg" id="peg">
+  <svg class="hero-ring" viewBox="0 0 900 900" aria-hidden="true" style="bottom:-420px;left:-300px;width:760px;height:760px;opacity:.4">
+    <g fill="none" stroke="#26A17B" stroke-opacity=".12">
+      <circle cx="450" cy="450" r="140"/><circle cx="450" cy="450" r="200"/><circle cx="450" cy="450" r="260"/><circle cx="450" cy="450" r="320"/><circle cx="450" cy="450" r="380"/>
+    </g>
+  </svg>
+  <div class="wrap peg-in">
+    <div class="rv">
+      <h2>The peg is market mechanics.</h2>
+      <p class="sec-sub" style="margin-inline:auto">MUSDT tracks USDT through on-chain liquidity on Ethereum. When the price drifts, arbitrage pushes it back. <strong>No centralized reserve, no counterparty, no discretion.</strong></p>
+    </div>
+    <div class="peg-eq rv">
+      <div class="tok">
+        <img src="logo-192.png" alt="Mini Tether">
         <div class="n">Mini Tether</div>
         <div class="s">MUSDT</div>
       </div>
-      <div class="peg-eq">≈</div>
-      <div class="peg-tok">
-        <img src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png" alt="USDT" onerror="this.src='logo-96.png'">
+      <div class="one">1.00<small>the peg</small></div>
+      <div class="tok">
+        <img src="usdt.png" alt="Tether USD">
         <div class="n">Tether USD</div>
         <div class="s">USDT</div>
       </div>
     </div>
-    <div class="peg-val">1.00<small> USD</small></div>
-    <p class="peg-lnk">Pool data on <a href="https://etherscan.io/dex/uniV3/0xdac15c8b27cc1d0aec5c28f568d7664da0401ec7" target="_blank" rel="noopener">Etherscan</a></p>
+    <div class="cycle rv">
+      <div class="step">
+        <h3><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 11l3-3"/></svg>Price drifts</h3>
+        <p>Trading moves MUSDT slightly above or below the USDT pair price on the public pool.</p>
+      </div>
+      <div class="arr" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="step">
+        <h3><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3l4 4-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg>Arbitrage acts</h3>
+        <p>Anyone can buy the cheaper side and sell the richer side. Profit-seeking does the work.</p>
+      </div>
+      <div class="arr" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="step">
+        <h3><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Peg returns</h3>
+        <p>The loop converges back to 1:1. The peg is enforced by the market, around the clock.</p>
+      </div>
+    </div>
+    <p class="peg-link rv">Live pool data, holders and transfers on <a href="https://etherscan.io/token/0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7" target="_blank" rel="noopener">Etherscan</a>.</p>
   </div>
 </section>
 
-<!-- FEATURES -->
-<div style="max-width:1120px;margin:0 auto;padding:0 28px 88px">
-<div id="features" class="feat-wrap">
-  <div class="center">
-    <span class="label">Features</span>
-    <h2>Built different on purpose</h2>
-  </div>
-  <div class="feat-grid">
-    <div class="f-card">
-      <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-      <h3>Zero Tax, Forever</h3>
-      <p>No transfer tax, no sell tax. The contract has no fee mechanism — it cannot be added.</p>
-    </div>
-    <div class="f-card">
-      <div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12h8M12 8v8"/></svg></div>
-      <h3>Fixed Supply</h3>
-      <p>100 billion MUSDT. No mint function exists. Today's supply is the permanent supply.</p>
-    </div>
-    <div class="f-card">
-      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-      <h3>Micro-Precision</h3>
-      <p>6 decimals — same as USDT. Split a cent, tip a fraction, pay per API call.</p>
-    </div>
-    <div class="f-card">
-      <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-      <h3>Immutable Contract</h3>
-      <p>Verified on Etherscan. Mirrors the original TetherToken with all admin functions removed.</p>
-    </div>
-    <div class="f-card">
-      <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
-      <h3>No Central Authority</h3>
-      <p>No pause, no blacklist, no upgrades. The code is the final authority.</p>
-    </div>
-    <div class="f-card">
-      <div class="ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-      <h3>Community Treasury</h3>
-      <p>No presale, no VC lockup, no team allocation. Distribution is transparent on-chain.</p>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- TOKEN -->
-<section id="token" style="padding-top:0">
-  <div class="center">
-    <span class="label">Token Details</span>
-    <h2>On-chain, transparent</h2>
-  </div>
-  <div class="tk-grid">
-    <div class="tk"><div class="l">Name</div><div class="v">Mini Tether</div></div>
-    <div class="tk"><div class="l">Symbol</div><div class="v gr">MUSDT</div></div>
-    <div class="tk"><div class="l">Supply</div><div class="v">100B</div></div>
-    <div class="tk"><div class="l">Decimals</div><div class="v">6</div></div>
-    <div class="tk"><div class="l">Network</div><div class="v">Ethereum</div></div>
-    <div class="tk"><div class="l">Standard</div><div class="v">ERC-20</div></div>
-    <div class="tk-addr">
-      <div class="l">Contract</div>
-      <div class="hex" onclick="cp(this)" title="Click to copy">0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7</div>
-      <div class="lk"><a href="https://etherscan.io/token/0xdac15c8b27cc1d0aec5c28f568d7664da0401ec7" target="_blank" rel="noopener">View on Etherscan</a></div>
+<!-- ═════════ MASCOT ═════════ -->
+<section id="mini">
+  <div class="wrap">
+    <div class="mini-grid">
+      <div class="badge-stage rv">
+        <div class="badge-disc"><img src="badge-mascote.png" alt="The Mini Dollar — Mini Tether mascot badge"></div>
+      </div>
+      <div class="mini-copy rv">
+        <h2>Meet the Mini Dollar.</h2>
+        <p>Every currency that wants to be used needs a face. USDT has the ₮ monogram; <strong>Mini Tether has the badge</strong>: the small green face that lives on the coin itself.</p>
+        <p>It stands for everything this token is for: <strong>the fraction of a dollar</strong> that moves on-chain. The tip, the cent, the credit, the retry. Too small for banks, perfectly sized for a block.</p>
+        <p class="mini-quoteline">Small, fast, and always ready to work.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq" style="padding-top:0">
-  <div class="center">
-    <span class="label">FAQ</span>
-    <h2>Common questions</h2>
-  </div>
-  <div class="faq-list">
-    <details><summary>What is MUSDT?<span class="pm">+</span></summary><div class="ans">MUSDT is a synthetic token that tracks USDT's price through a Uniswap V3 liquidity pool. It's designed for micro-transactions — small-value, high-frequency payments like tipping, gaming, and pay-per-use services.</div></details>
-    <details><summary>How does the peg work?<span class="pm">+</span></summary><div class="ans">A concentrated liquidity pool on Uniswap V3 maintains the 1:1 relationship with USDT. When MUSDT drifts above $1, arbitrageurs sell into the pool. When below, they buy. Standard AMM market mechanics — no centralized reserve.</div></details>
-    <details><summary>Is the contract safe?<span class="pm">+</span></summary><div class="ans">The contract mirrors the original TetherToken's code structure with all administrative functions removed: no pause, no blacklist, no mint, no upgrade path. It's verified on Etherscan and immutable.</div></details>
-    <details><summary>Why not just use USDT?<span class="pm">+</span></summary><div class="ans">For larger amounts, you should use USDT. MUSDT is complementary — a token whose branding, mascot, and community focus on the micro-transaction vertical that USDT wasn't designed for.</div></details>
-    <details><summary>Can the supply change?<span class="pm">+</span></summary><div class="ans">No. The 100 billion supply is set in the constructor. No mint function exists. Supply is fixed forever.</div></details>
-    <details><summary>How do I get MUSDT?<span class="pm">+</span></summary><div class="ans">MUSDT is available on Ethereum. Import the contract address into your wallet to track your balance. Check <a href="https://etherscan.io/token/0xdac15c8b27cc1d0aec5c28f568d7664da0401ec7" target="_blank">Etherscan</a> for current pool data and holder statistics.</div></details>
+<!-- ═════════ FEATURES ═════════ -->
+<section id="features" style="padding-top:0">
+  <div class="wrap">
+    <div class="feat-head rv">
+      <div>
+        <h2>Built clean on purpose.</h2>
+        <p class="sec-sub">The contract is a verified mirror of the TetherToken surface — with everything that could touch your balance simply <strong>not written into it</strong>.</p>
+      </div>
+    </div>
+    <div class="feat-list rv">
+      <div class="feat">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <div><h3>Zero tax, forever</h3><p>No transfer tax, no sell tax. There is no fee mechanism in the code, and none can be added.</p></div>
+      </div>
+      <div class="feat">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+        <div><h3>Fixed supply</h3><p>100 billion MUSDT, minted once in the constructor. No mint function exists, so today's supply is the permanent supply.</p></div>
+      </div>
+      <div class="feat">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 8l2-4h12l2 4M4 8v11a1 1 0 001 1h14a1 1 0 001-1V8M9 12h6"/></svg>
+        <div><h3>Micro-precision</h3><p>6 decimals — exactly like USDT. Price a fraction of a cent without losing the remainder.</p></div>
+      </div>
+      <div class="feat">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-3.6 8-10V5l-8-3-8 3v7c0 6.4 8 10 8 10z"/><path d="M8.5 11.5l2.5 2.5 4.5-4.5"/></svg>
+        <div><h3>Immutable &amp; verified</h3><p>Source code verified on Etherscan. No proxy and no upgrade path: what you read is what runs.</p></div>
+      </div>
+      <div class="feat">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.5 5.5l13 13"/></svg>
+        <div><h3>No admin power over funds</h3><p>No pause, no blacklist, no freeze. The only owner functions are cosmetic: name and symbol.</p></div>
+      </div>
+      <div class="feat">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/></svg>
+        <div><h3>Transparent treasury</h3><p>Supply is held by the project treasury and every movement is visible on-chain, in real time.</p></div>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- ═════════ HOW ═════════ -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="rv">
+      <h2>Don't trust this page.<br>Verify it.</h2>
+      <p class="sec-sub">Everything claimed here is checkable in minutes, straight from the blockchain. <strong style="color:#fff">No wallet needed, ever.</strong></p>
+    </div>
+    <div class="how-grid">
+      <div class="how-step rv">
+        <div class="num">1</div>
+        <h3>Read the contract</h3>
+        <p>Open the <a href="https://etherscan.io/address/0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7#code" target="_blank" rel="noopener">verified source on Etherscan</a>: an ERC-20 surface with no mint, no pause and no blacklist in it.</p>
+      </div>
+      <div class="how-step rv">
+        <div class="num">2</div>
+        <h3>Copy the official address</h3>
+        <p>One canonical address: copy it below or straight from the explorer. Always the checksummed form: <span style="font-family:var(--mono);font-size:.9em">dac1…1ec7</span>.</p>
+      </div>
+      <div class="how-step rv">
+        <div class="num">3</div>
+        <h3>Watch it live</h3>
+        <p>Track <a href="https://etherscan.io/token/0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7" target="_blank" rel="noopener">transfers, holders and pool data</a> as they happen. The chain is the source of truth; this site is just the front door.</p>
+      </div>
+    </div>
+    <div class="how-note rv">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width:1.8"><path d="M12 22s8-3.6 8-10V5l-8-3-8 3v7c0 6.4 8 10 8 10z"/><path d="M8.5 11.5l2.5 2.5 4.5-4.5"/></svg>
+      This site never asks you to connect a wallet.
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ TOKEN ═════════ -->
+<section id="token">
+  <div class="wrap">
+    <div class="rv">
+        <h2>On-chain, transparent.</h2>
+      <p class="sec-sub">The facts below are read straight from the verified contract.</p>
+    </div>
+    <dl class="token-grid rv">
+      <div class="spec"><dt>Name</dt><dd>Mini Tether</dd></div>
+      <div class="spec"><dt>Symbol</dt><dd>MUSDT</dd></div>
+      <div class="spec"><dt>Supply</dt><dd>100,000,000,000</dd></div>
+      <div class="spec"><dt>Decimals</dt><dd>6, same as USDT</dd></div>
+      <div class="spec"><dt>Network</dt><dd>Ethereum mainnet</dd></div>
+      <div class="spec"><dt>Standard</dt><dd>ERC-20</dd></div>
+    </dl>
+    <div class="addr rv">
+      <span class="lbl">CONTRACT</span>
+      <span class="hex" id="addrHex">0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7</span>
+      <button class="copy-btn" type="button" data-copy>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width:1.8"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        <span>Copy address</span>
+      </button>
+      <a class="ext" href="https://etherscan.io/token/0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7" target="_blank" rel="noopener">View on Etherscan ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ FAQ ═════════ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="rv" style="text-align:center">
+      <h2>Common questions</h2>
+    </div>
+    <div class="faq-list rv">
+      <details>
+        <summary>What is MUSDT?<span class="pm"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="stroke:currentColor"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">A synthetic token that tracks USDT's price 1:1 through on-chain liquidity on Ethereum. It exists for micro-transactions: small-value, high-frequency payments like tipping, gaming and pay-per-use services.</div>
+      </details>
+      <details>
+        <summary>How does the peg work?<span class="pm"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="stroke:currentColor"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">An on-chain liquidity pool trades the MUSDT/USDT pair. When MUSDT drifts above $1, arbitrageurs sell into the pool; when below, they buy. Standard market mechanics — there is no centralized reserve and no counterparty behind the peg.</div>
+      </details>
+      <details>
+        <summary>Is the contract safe?<span class="pm"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="stroke:currentColor"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">The source is verified on Etherscan and mirrors the original TetherToken surface with the administrative machinery removed: no mint, no pause, no blacklist, no upgrades. The only owner functions are cosmetic — name and symbol. Nothing in the code can touch balances. Read it yourself on <a href="https://etherscan.io/address/0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7#code" target="_blank" rel="noopener">Etherscan</a>.</div>
+      </details>
+      <details>
+        <summary>Why not just use USDT?<span class="pm"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="stroke:currentColor"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">For reserves and large payments, you should use USDT. MUSDT is complementary: a token whose brand, mascot and precision are focused on the micro-transaction flows that big-money tooling was never designed around.</div>
+      </details>
+      <details>
+        <summary>Can the supply change?<span class="pm"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="stroke:currentColor"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">No. The 100 billion supply is set in the constructor and no mint function exists. Supply is fixed forever.</div>
+      </details>
+      <details>
+        <summary>Do I need to connect a wallet here?<span class="pm"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="stroke:currentColor"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">No. This site has no wallet integration at all. Copy the contract address and track everything on <a href="https://etherscan.io/token/0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7" target="_blank" rel="noopener">Etherscan</a>, or import it into your own wallet app to watch the balance. Nothing here ever asks for a connection.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ FOOTER ═════════ -->
 <footer>
-  <img src="logo-96.png" alt="MUSDT">
-  <div class="nm">Mini Tether</div>
-  <div class="ds">The micro-transaction token</div>
-  <div class="lks">
-    <a href="https://etherscan.io/token/0xdac15c8b27cc1d0aec5c28f568d7664da0401ec7" target="_blank">Etherscan</a>
-    <a href="https://github.com/luccmick121/mini-tether">GitHub</a>
-    <a href="https://raw.githubusercontent.com/luccmick121/mini-tether/main/logo.png">Logo</a>
+  <div class="foot-in">
+    <div class="foot-brand">
+      <div class="foot-chip"><img src="logo-96.png" alt="Mini Tether"></div>
+      <div>
+        <div class="nm">Mini Tether</div>
+        <div class="ds">The micro-transaction token</div>
+      </div>
+    </div>
+    <div class="foot-links">
+      <a href="https://etherscan.io/token/0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7" target="_blank" rel="noopener">Etherscan</a>
+      <a href="https://github.com/luccmick121/mini-tether" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://raw.githubusercontent.com/luccmick121/mini-tether/main/logo.png" target="_blank" rel="noopener">Logo pack</a>
+    </div>
   </div>
-  <div class="cp">© 2026 Mini Tether. MUSDT is a synthetic token tracking USDT. Not financial advice.</div>
+  <div class="foot-cp">
+    <span>© 2026 Mini Tether · MUSDT is a synthetic token tracking USDT.</span>
+    <span>Not financial advice.</span>
+  </div>
 </footer>
 
 <script>
-function cp(el){
-  navigator.clipboard.writeText('0xdac15c8b27cc1d0aec5c28f568d7664da0401ec7').then(()=>{
-    var o=el.textContent;el.textContent='Copied to clipboard';el.style.color='#7DDCB8';
-    setTimeout(function(){el.textContent=o;el.style.color=''},1600);
+document.documentElement.classList.add('js');
+var ADDR='0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7';
+
+/* copy-to-clipboard with textual feedback */
+document.querySelectorAll('[data-copy]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var label=btn.querySelector('span');
+    navigator.clipboard.writeText(ADDR).then(function(){
+      var old=label.textContent;label.textContent='Copied';
+      setTimeout(function(){label.textContent=old},1600);
+    });
   });
+});
+
+/* reveal on scroll (visible by default when JS is off) */
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+/* coin tilt — fine pointers only, respects reduced motion */
+var stage=document.getElementById('coinStage');
+var fine=matchMedia('(pointer:fine)').matches;
+var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(stage&&fine&&!calm){
+  var vis=stage.parentElement;
+  vis.addEventListener('pointermove',function(ev){
+    var r=vis.getBoundingClientRect();
+    var x=(ev.clientX-r.left)/r.width-.5, y=(ev.clientY-r.top)/r.height-.5;
+    stage.style.transform='rotateY('+(x*8)+'deg) rotateX('+(-y*8)+'deg)';
+  });
+  vis.addEventListener('pointerleave',function(){stage.style.transform=''});
 }
 </script>
 </body>

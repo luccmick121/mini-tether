@@ -23,9 +23,9 @@
 	<p>0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7</p>
 	<button id="btn">🦊 Adicionar à carteira</button>
 	<div id="manual" style="display:none;text-align:left;font-size:14px;color:#8b949e;line-height:1.7">
-		<b style="color:#eee">🛡️ Trust Wallet — adicione em 30s:</b><br>
+		<b style="color:#eee">🛡️ Adição manual (30s) — Trust/Bybit/outros:</b><br>
 		1. Toque em <b>✛ / Gerenciar cripto</b><br>
-		2. <b>+ Adicionar token personalizado</b><br>
+		2. <b>+ Adicionar token personalizado</b> (Bybit: importar token)<br>
 		3. Rede: <b>Ethereum</b> · cole o contrato:<br>
 		<button id="copia" onclick="copiar()" style="background:#21262d;color:#eee;border:1px solid #30363d;font-size:13px;padding:10px;border-radius:8px;width:100%;margin:8px 0;cursor:pointer;word-break:break-all">📋 Copiar contrato</button>
 		4. Nome <b>Mini Tether</b> · Símbolo <b>MUSDT</b> · Decimais <b>6</b> → <b>Importar</b><br>
@@ -68,11 +68,9 @@ async function adicionar() {
 	try {
 		const r = await window.ethereum.request({ method: 'wallet_watchAsset', params: TOKEN });
 		if (r) { ok.style.display = 'block'; document.getElementById('btn').style.display = 'none'; }
-		else erro.textContent = 'A MetaMask recusou — remova o token existente (⋮ → Remove token) e clique de novo.';
-		if(!r) erro.style.display = 'block';
+		else manualTrust();
 	} catch (e) {
-		erro.textContent = 'Erro: ' + (e.message || e) + ' — se o token já existe, remova-o antes e recarregue.';
-		erro.style.display = 'block';
+		manualTrust(); // carteira sem watchAsset (ex.: Bybit) → fluxo manual guiado
 	}
 }
 document.getElementById('btn').onclick = adicionar;

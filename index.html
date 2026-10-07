@@ -141,9 +141,9 @@ h2{font-family:var(--disp);font-weight:800;font-size:clamp(30px,4vw,44px);letter
 .mini-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:center}
 .badge-stage{position:relative;display:flex;align-items:center;justify-content:center}
 .badge-disc{width:min(300px,70vw);aspect-ratio:1;background:var(--g500);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-coin);position:relative}
-.badge-disc img.coinbase{width:100%;height:auto;border-radius:50%;border:5px solid #fff;box-shadow:0 14px 30px rgba(11,61,46,.4)}
-.badge-disc .coinw{width:74%;line-height:0}
-.badge-disc .coinbadge{border-width:3px}
+.badge-disc img.coinbase{width:100%;height:auto;border-radius:50%;border:3px solid #fff;box-shadow:0 10px 22px rgba(11,61,46,.26)}
+.badge-disc .coinw{width:70%;line-height:0}
+.badge-disc .coinbadge{border-width:2.5px;width:40%}
 .badge-disc::after{content:"";position:absolute;inset:-22px;border:1px dashed var(--g500);opacity:.45;border-radius:50%}
 .mini-copy p{color:var(--ink-2);margin-top:18px;max-width:32em}
 .mini-copy p strong{color:var(--ink);font-weight:600}
@@ -178,7 +178,9 @@ h2{font-family:var(--disp);font-weight:800;font-size:clamp(30px,4vw,44px);letter
 .spec:nth-child(3n){padding-left:30px;border-left:1px solid var(--line)}
 .spec dt{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
 .spec dd{font-family:var(--disp);font-weight:700;font-size:21px;letter-spacing:-.01em;margin-top:8px;font-variant-numeric:tabular-nums}
-.addr{margin-top:40px;background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:26px 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.addr{margin-top:40px;background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:26px 28px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.addr-top{display:flex;align-items:center;gap:20px;flex:1;min-width:220px;flex-wrap:wrap}
+.addr-actions{display:flex;align-items:center;gap:16px}
 .addr .lbl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--ink-3)}
 .addr .hex{font-family:var(--mono);font-size:clamp(13px,1.6vw,16px);font-weight:500;color:var(--g900);word-break:break-all;flex:1;min-width:220px}
 .copy-btn{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:#fff;background:var(--g900);border:none;border-radius:100px;padding:10px 18px;cursor:pointer;transition:background .15s}
@@ -244,7 +246,9 @@ footer{background:var(--g900);color:var(--mint);padding:64px 28px 48px}
   .spec{padding-right:0}
   .pair .row{gap:16px}
   .pair img.coinbase{width:84px;height:84px}
-  .addr{flex-direction:column;align-items:stretch}
+  .addr{flex-direction:column;align-items:stretch;gap:14px;padding:22px 20px}
+  .addr-top{flex-direction:column;align-items:flex-start;gap:6px}
+  .addr-actions{gap:12px}
   .addr .hex{min-width:0}
   .chip-mascot{width:96px;height:96px;right:-10px;bottom:0}
   .chip-mascot img{width:66px;height:66px}
@@ -514,13 +518,17 @@ footer{background:var(--g900);color:var(--mint);padding:64px 28px 48px}
       <div class="spec"><dt>Standard</dt><dd>ERC-20</dd></div>
     </dl>
     <div class="addr rv">
-      <span class="lbl">CONTRACT</span>
-      <span class="hex" id="addrHex">0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7</span>
-      <button class="copy-btn" type="button" data-copy>
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width:1.8"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        <span>Copy address</span>
-      </button>
-      <a class="ext" href="https://etherscan.io/token/0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7" target="_blank" rel="noopener">View on Etherscan ↗</a>
+      <div class="addr-top">
+        <span class="lbl">CONTRACT</span>
+        <span class="hex" id="addrHex">0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7</span>
+      </div>
+      <div class="addr-actions">
+        <button class="copy-btn" type="button" data-copy>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width:1.8"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          <span>Copy address</span>
+        </button>
+        <a class="ext" href="https://etherscan.io/token/0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7" target="_blank" rel="noopener">View on Etherscan ↗</a>
+      </div>
     </div>
   </div>
 </section>

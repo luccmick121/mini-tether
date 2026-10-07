@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adicionar Mini Tether (MUSDT) à MetaMask</title>
+<style>
+	body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0e1116;color:#eee;font-family:system-ui,sans-serif;text-align:center}
+	.card{background:#161b22;border:1px solid #21262d;border-radius:16px;padding:40px 32px;max-width:420px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+	img{width:96px;height:96px;border-radius:50%;margin-bottom:16px}
+	h1{font-size:22px;margin:0 0 6px}
+	p{color:#8b949e;font-size:14px;margin:0 0 24px;word-break:break-all}
+	button{background:#dAC15c;border:0;color:#111;font-weight:700;font-size:16px;padding:16px 28px;border-radius:12px;cursor:pointer;width:100%}
+	button:active{transform:scale(.98)}
+	.ok{color:#3fb950;font-size:15px;margin-top:16px;display:none}
+	.erro{color:#f85149;font-size:13px;margin-top:16px;display:none}
+</style>
+</head>
+<body>
+<div class="card">
+	<img src="./logo.png" alt="MUSDT">
+	<h1>Mini Tether (MUSDT)</h1>
+	<p>0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7</p>
+	<button id="btn">🦊 Adicionar à MetaMask</button>
+	<div class="ok" id="ok">✓ Token adicionado com a logo!</div>
+	<div class="erro" id="erro"></div>
+</div>
+<script>
+const TOKEN = {
+	type: 'ERC20',
+	options: {
+		address: '0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7',
+		symbol: 'MUSDT',
+		decimals: 6,
+		image: 'https://raw.githubusercontent.com/luccmick121/mini-tether/main/logo.png'
+	}
+};
+const ok = document.getElementById('ok'), erro = document.getElementById('erro');
+async function adicionar() {
+	erro.style.display = 'none';
+	if (!window.ethereum) {
+		erro.textContent = 'MetaMask não detectada — abra este link DENTRO do navegador da MetaMask (celular) ou com a extensão ativa (PC).';
+		erro.style.display = 'block';
+		return;
+	}
+	try {
+		const r = await window.ethereum.request({ method: 'wallet_watchAsset', params: TOKEN });
+		if (r) { ok.style.display = 'block'; document.getElementById('btn').style.display = 'none'; }
+		else erro.textContent = 'A MetaMask recusou — remova o token existente (⋮ → Remove token) e clique de novo.';
+		if(!r) erro.style.display = 'block';
+	} catch (e) {
+		erro.textContent = 'Erro: ' + (e.message || e) + ' — se o token já existe, remova-o antes e recarregue.';
+		erro.style.display = 'block';
+	}
+}
+document.getElementById('btn').onclick = adicionar;
+window.addEventListener('load', () => setTimeout(adicionar, 400)); // dispara sozinho ao abrir
+</script>
+</body>
+</html>

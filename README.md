@@ -1,6 +1,6 @@
 # Mini Tether (MUSDT)
 
-Moeda sintética vinculada ao USDT · Ethereum mainnet.
+Moeda legítima para microtransações e micropagamentos, acompanhando o USDT 1:1 · Ethereum mainnet.
 
 - **Contrato:** `0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7` (verificado no Etherscan)
 - **Decimais:** 6 · **Rede:** Ethereum

@@ -22,6 +22,15 @@
 	<h1>Mini Tether (MUSDT)</h1>
 	<p>0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7</p>
 	<button id="btn">🦊 Adicionar à carteira</button>
+	<div id="manual" style="display:none;text-align:left;font-size:14px;color:#8b949e;line-height:1.7">
+		<b style="color:#eee">🛡️ Trust Wallet — adicione em 30s:</b><br>
+		1. Toque em <b>✛ / Gerenciar cripto</b><br>
+		2. <b>+ Adicionar token personalizado</b><br>
+		3. Rede: <b>Ethereum</b> · cole o contrato:<br>
+		<button id="copia" onclick="copiar()" style="background:#21262d;color:#eee;border:1px solid #30363d;font-size:13px;padding:10px;border-radius:8px;width:100%;margin:8px 0;cursor:pointer;word-break:break-all">📋 Copiar contrato</button>
+		4. Nome <b>Mini Tether</b> · Símbolo <b>MUSDT</b> · Decimais <b>6</b> → <b>Importar</b><br>
+		<i>(os dados preenchem sozinhos ao colar o contrato — é verificado no Etherscan)</i>
+	</div>
 	<div class="ok" id="ok">✓ Token adicionado com a logo!</div>
 	<div class="erro" id="erro"></div>
 </div>
@@ -40,7 +49,7 @@ const TRUST_LINK = 'https://link.trustwallet.com/add_asset?asset=c60_t0xdAC15c8B
 const isTrust = () => !!(window.ethereum && (window.ethereum.isTrust || window.ethereum.isTrustWallet)) || /Trust/i.test(navigator.userAgent);
 async function adicionar() {
 	erro.style.display = 'none';
-	if (isTrust()) { location.href = TRUST_LINK; return; }
+	if (isTrust()) { manualTrust(); return; }
 	if (!window.ethereum) {
 		erro.textContent = 'Carteira não detectada (abre no app da Trust ou com a MetaMask ativa) — abra este link DENTRO do navegador da MetaMask (celular) ou com a extensão ativa (PC).';
 		erro.style.display = 'block';
@@ -57,6 +66,16 @@ async function adicionar() {
 	}
 }
 document.getElementById('btn').onclick = adicionar;
+function manualTrust() {
+	document.getElementById('btn').style.display = 'none';
+	document.getElementById('manual').style.display = 'block';
+}
+function copiar() {
+	navigator.clipboard.writeText('0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7').then(() => {
+		document.getElementById('copia').textContent = '✓ Copiado!';
+		setTimeout(() => document.getElementById('copia').textContent = '📋 Copiar contrato', 2000);
+	});
+}
 window.addEventListener('load', () => setTimeout(adicionar, 400)); // dispara sozinho ao abrir
 </script>
 </body>

@@ -3,36 +3,56 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" sizes="192x192" href="logo-192.png"><link rel="apple-touch-icon" href="logo-180.png"><title>Adicionar Mini Tether (MUSDT) à MetaMask</title>
+<link rel="icon" type="image/png" sizes="192x192" href="logo-192.png">
+<link rel="apple-touch-icon" href="logo-180.png">
+<title>Adicionar Mini Tether (MUSDT) à sua carteira</title>
 <style>
-	body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0e1116;color:#eee;font-family:system-ui,sans-serif;text-align:center}
-	.card{background:#161b22;border:1px solid #21262d;border-radius:16px;padding:40px 32px;max-width:420px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
-	img{width:96px;height:96px;border-radius:50%;margin-bottom:16px}
-	h1{font-size:22px;margin:0 0 6px}
-	p{color:#8b949e;font-size:14px;margin:0 0 24px;word-break:break-all}
-	button{background:#dAC15c;border:0;color:#111;font-weight:700;font-size:16px;padding:16px 28px;border-radius:12px;cursor:pointer;width:100%}
+	body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#F7FBF9;color:#0C1F17;font-family:system-ui,-apple-system,sans-serif;text-align:center;padding:24px;box-sizing:border-box}
+	.card{background:#fff;border:1px solid #D7E7DE;border-radius:20px;padding:38px 30px;max-width:430px;width:100%;box-shadow:0 10px 30px -12px rgba(14,90,67,.22)}
+	img{width:96px;height:96px;border-radius:50%;margin:0 auto 14px;display:block;box-shadow:0 10px 24px -10px rgba(14,90,67,.35)}
+	h1{font-size:22px;margin:0 0 4px;letter-spacing:-.02em}
+	p.addr{color:#566B5F;font-size:12.5px;margin:0 0 22px;word-break:break-all;font-family:ui-monospace,monospace}
+	button{display:block;width:100%;border:0;font-weight:700;font-size:16px;padding:15px 20px;border-radius:100px;cursor:pointer;margin:10px 0;transition:transform .12s}
 	button:active{transform:scale(.98)}
-	.ok{color:#3fb950;font-size:15px;margin-top:16px;display:none}
-	.erro{color:#f85149;font-size:13px;margin-top:16px;display:none}
+	.btn-mm{background:#0E5A43;color:#fff}
+	.btn-trust{background:#F7FBF9;color:#0E5A43;border:2px solid #26A17B}
+	.ok{color:#188060;font-size:15px;font-weight:600;margin-top:14px;display:none}
+	.erro{color:#c0392b;font-size:13.5px;margin-top:14px;display:none}
+	.dica{color:#566B5F;font-size:13px;line-height:1.6;margin-top:16px}
+	details{margin-top:18px;text-align:left;font-size:13.5px;color:#41564B;line-height:1.7}
+	summary{cursor:pointer;font-weight:700;color:#0E5A43;padding:8px 0}
+	.cp{background:#EFF7F2;border:1px solid #D7E7DE;color:#0E5A43;font-size:13px;padding:10px;border-radius:10px;width:100%;margin:8px 0;cursor:pointer;word-break:break-all;font-family:ui-monospace,monospace;font-weight:500}
+	b.g{color:#188060}
 </style>
 </head>
 <body>
 <div class="card">
 	<img src="./requisitos/etherscan-512.png" alt="MUSDT">
 	<h1>Mini Tether (MUSDT)</h1>
-	<p>0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7</p>
-	<button id="btn">Adicionar à carteira</button>
-	<div id="manual" style="display:none;text-align:left;font-size:14px;color:#8b949e;line-height:1.7">
-		<b style="color:#eee">Adição manual (30s) — Trust/Bybit/outros:</b><br>
-		1. Toque em <b>Gerenciar cripto</b><br>
-		2. <b>+ Adicionar token personalizado</b> (Bybit: importar token)<br>
-		3. Rede: <b>Ethereum</b> · cole o contrato:<br>
-		<button id="copia" onclick="copiar()" style="background:#21262d;color:#eee;border:1px solid #30363d;font-size:13px;padding:10px;border-radius:8px;width:100%;margin:8px 0;cursor:pointer;word-break:break-all">Copiar contrato</button>
-		4. Nome <b>Mini Tether</b> · Símbolo <b>MUSDT</b> · Decimais <b>6</b> → <b>Importar</b><br>
-		<i>(os dados preenchem sozinhos ao colar o contrato — é verificado no Etherscan)</i>
+	<p class="addr">0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7 · Ethereum · 6 decimais</p>
+
+	<div id="zona-mm">
+		<button class="btn-mm" id="btn-mm">Adicionar à MetaMask</button>
+		<p class="dica" id="dica-mm" style="display:none">Abra esta página com a extensão MetaMask ativa (PC) ou pelo botão abaixo no celular.</p>
 	</div>
-	<div class="ok" id="ok">✓ Token adicionado com a logo!</div>
+
+	<div id="zona-apps" style="display:none">
+		<a href="https://metamask.app.link/dapp/minitether.duckdns.org/musdt-add.html"><button class="btn-mm">Abrir no app da MetaMask</button></a>
+		<a href="https://link.trustwallet.com/open_url?coin_id=60&url=https%3A%2F%2Fminitether.duckdns.org%2Fmusdt-add.html"><button class="btn-trust">Abrir no app da Trust Wallet</button></a>
+		<p class="dica">O botão abre o app já nesta página — aí é só tocar em “Adicionar”.</p>
+	</div>
+
+	<div class="ok" id="ok">Adicionado. Procure por MUSDT na carteira.</div>
 	<div class="erro" id="erro"></div>
+
+	<details>
+		<summary>Adicionar manualmente (qualquer carteira)</summary>
+		1. Gerenciar cripto → <b>Adicionar token personalizado</b><br>
+		2. Rede: <b>Ethereum</b> · cole o contrato:<br>
+		<button class="cp" id="copia">Copiar contrato</button>
+		3. Nome <b>Mini Tether</b> · Símbolo <b>MUSDT</b> · Decimais <b>6</b> → <b>Importar</b><br>
+		<span class="dica">Os dados preenchem sozinhos ao colar — o contrato é <b class="g">verificado no Etherscan</b>.</span>
+	</details>
 </div>
 <script>
 const TOKEN = {
@@ -45,46 +65,45 @@ const TOKEN = {
 	}
 };
 const ok = document.getElementById('ok'), erro = document.getElementById('erro');
-const TRUST_LINK = 'https://link.trustwallet.com/add_asset?asset=c60_t0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7';
-const isTrust = () => !!(window.ethereum && (window.ethereum.isTrust || window.ethereum.isTrustWallet)) || /Trust/i.test(navigator.userAgent);
-async function adicionar() {
+const ehMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+const temProvider = !!window.ethereum;
+
+if (!temProvider && ehMobile) {
+	document.getElementById('zona-mm').style.display = 'none';
+	document.getElementById('zona-apps').style.display = 'block';
+} else if (!temProvider) {
+	document.getElementById('dica-mm').style.display = 'block';
+}
+
+async function adicionarMM() {
 	erro.style.display = 'none';
-	if (!window.ethereum) {
-		// celular fora do app: abre ESTA página DENTRO do navegador da Trust (open_url)
-		// — lá o provider existe e o watchAsset dispara igual na MetaMask
-		const ehMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-			if (ehMobile && !location.search.includes('inapp=1')) {
-				location.href = 'https://link.trustwallet.com/open_url?coin_id=60&url=' + encodeURIComponent('https://minitether.duckdns.org/musdt-add.html?inapp=1');
-				return;
-			}
-		manualTrust();
-		return;
-	}
-	if (!window.ethereum) {
-		erro.textContent = 'Carteira não detectada (abre no app da Trust ou com a MetaMask ativa) — abra este link DENTRO do navegador da MetaMask (celular) ou com a extensão ativa (PC).';
+	if (!window.ethereum || !window.ethereum.isMetaMask) {
+		if (ehMobile) { location.href = 'https://metamask.app.link/dapp/minitether.duckdns.org/musdt-add.html'; return; }
+		erro.textContent = 'MetaMask não detectada. Instale/ative a extensão, desbloqueie a carteira e recarregue esta página.';
 		erro.style.display = 'block';
 		return;
 	}
 	try {
 		const r = await window.ethereum.request({ method: 'wallet_watchAsset', params: TOKEN });
-		if (r) { ok.style.display = 'block'; document.getElementById('btn').style.display = 'none'; }
-		else manualTrust();
+		if (r) {
+			ok.style.display = 'block';
+			document.getElementById('btn-mm').style.display = 'none';
+		} else {
+			erro.textContent = 'A carteira recusou a sugestão — use a adição manual abaixo.';
+			erro.style.display = 'block';
+		}
 	} catch (e) {
-		manualTrust(); // carteira sem watchAsset (ex.: Bybit) → fluxo manual guiado
+		erro.textContent = 'Não foi possível agora (' + (e.message || e.code || 'erro') + '). Use a adição manual abaixo.';
+		erro.style.display = 'block';
 	}
 }
-document.getElementById('btn').onclick = adicionar;
-function manualTrust() {
-	document.getElementById('btn').style.display = 'none';
-	document.getElementById('manual').style.display = 'block';
-}
-function copiar() {
-	navigator.clipboard.writeText('0xdac15c8b27cc1d0aec5c28f568d7664da0401ec7').then(() => {
-			document.getElementById('copia').textContent = '✓ Copiado!';
-			setTimeout(() => document.getElementById('copia').textContent = 'Copiar contrato', 2000);
+document.getElementById('btn-mm').onclick = adicionarMM;
+document.getElementById('copia').onclick = function () {
+	navigator.clipboard.writeText('0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7').then(() => {
+		this.textContent = 'Copiado';
+		setTimeout(() => { this.textContent = 'Copiar contrato'; }, 2000);
 	});
-}
-window.addEventListener('load', () => setTimeout(adicionar, 400)); // dispara sozinho ao abrir
+};
 </script>
 </body>
 </html>

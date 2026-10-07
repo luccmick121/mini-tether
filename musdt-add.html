@@ -49,7 +49,17 @@ const TRUST_LINK = 'https://link.trustwallet.com/add_asset?asset=c60_t0xdAC15c8B
 const isTrust = () => !!(window.ethereum && (window.ethereum.isTrust || window.ethereum.isTrustWallet)) || /Trust/i.test(navigator.userAgent);
 async function adicionar() {
 	erro.style.display = 'none';
-	if (isTrust()) { manualTrust(); return; }
+	if (!window.ethereum) {
+		// celular fora do app: abre ESTA página DENTRO do navegador da Trust (open_url)
+		// — lá o provider existe e o watchAsset dispara igual na MetaMask
+		const ehMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+		if (ehMobile && !location.search.includes('inapp=1')) {
+			location.href = 'https://link.trustwallet.com/open_url?coin_id=60&url=' + encodeURIComponent('https://luccmick121.github.io/mini-tether/musdt-add.html?inapp=1');
+			return;
+		}
+		manualTrust();
+		return;
+	}
 	if (!window.ethereum) {
 		erro.textContent = 'Carteira não detectada (abre no app da Trust ou com a MetaMask ativa) — abra este link DENTRO do navegador da MetaMask (celular) ou com a extensão ativa (PC).';
 		erro.style.display = 'block';

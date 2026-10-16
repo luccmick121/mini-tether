@@ -37,7 +37,7 @@ USDT. The only owner functions are cosmetic (setName/setSymbol/transferOwnership
 ## Operating Context
 
 - Contract (source of truth, from addresses.ethereum.json):
-  `0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7` — verified on Etherscan.
+  `0xbADDa8886bB7Aed292c10876aFD89506351874A0` — verified on Etherscan.
 - Supply 100,000,000,000 fixed at deploy; decimals 6 (same as USDT).
 - Pool live at price 1.000000 (15∥15) — per docs/HANDOFF-LAYA-2026-10-07.md.
 - Site repo: github.com/luccmick121/mini-tether (GitHub Pages, CNAME).

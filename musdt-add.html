@@ -29,7 +29,7 @@
 <div class="card">
 	<img src="./requisitos/etherscan-512.png" alt="MUSDT">
 	<h1>Mini Tether (MUSDT)</h1>
-	<p class="addr">0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7 · Ethereum · 6 decimais</p>
+	<p class="addr">0xbADDa8886bB7Aed292c10876aFD89506351874A0 · Ethereum · 6 decimais</p>
 
 	<div id="zona-mm">
 		<button class="btn-mm" id="btn-mm">Adicionar à MetaMask</button>
@@ -58,7 +58,7 @@
 const TOKEN = {
 	type: 'ERC20',
 	options: {
-		address: '0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7',
+		address: '0xbADDa8886bB7Aed292c10876aFD89506351874A0',
 		symbol: 'MUSDT',
 		decimals: 6,
 		image: 'https://luccmick121.github.io/mini-tether/requisitos/etherscan-512.png'
@@ -99,7 +99,7 @@ async function adicionarMM() {
 }
 document.getElementById('btn-mm').onclick = adicionarMM;
 document.getElementById('copia').onclick = function () {
-	navigator.clipboard.writeText('0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7').then(() => {
+	navigator.clipboard.writeText('0xbADDa8886bB7Aed292c10876aFD89506351874A0').then(() => {
 		this.textContent = 'Copiado';
 		setTimeout(() => { this.textContent = 'Copiar contrato'; }, 2000);
 	});

@@ -37,8 +37,8 @@
 	</div>
 
 	<div id="zona-apps" style="display:none">
-		<a href="https://metamask.app.link/dapp/minitether.duckdns.org/musdt-add.html"><button class="btn-mm">Abrir no app da MetaMask</button></a>
-		<a href="https://link.trustwallet.com/open_url?coin_id=60&url=https%3A%2F%2Fminitether.duckdns.org%2Fmusdt-add.html"><button class="btn-trust">Abrir no app da Trust Wallet</button></a>
+		<a href="https://metamask.app.link/dapp/luccmick121.github.io/mini-tether/musdt-add.html"><button class="btn-mm">Abrir no app da MetaMask</button></a>
+		<a href="https://link.trustwallet.com/open_url?coin_id=60&url=https%3A%2F%2Fluccmick121.github.io%2Fmini-tether%2Fmusdt-add.html"><button class="btn-trust">Abrir no app da Trust Wallet</button></a>
 		<p class="dica">O botão abre o app já nesta página — aí é só tocar em “Adicionar”.</p>
 	</div>
 
@@ -61,7 +61,7 @@ const TOKEN = {
 		address: '0xdAC15c8B27CC1D0AEC5c28F568D7664da0401ec7',
 		symbol: 'MUSDT',
 		decimals: 6,
-		image: 'https://minitether.duckdns.org/requisitos/etherscan-512.png'
+		image: 'https://luccmick121.github.io/mini-tether/requisitos/etherscan-512.png'
 	}
 };
 const ok = document.getElementById('ok'), erro = document.getElementById('erro');
@@ -78,7 +78,7 @@ if (!temProvider && ehMobile) {
 async function adicionarMM() {
 	erro.style.display = 'none';
 	if (!window.ethereum || !window.ethereum.isMetaMask) {
-		if (ehMobile) { location.href = 'https://metamask.app.link/dapp/minitether.duckdns.org/musdt-add.html'; return; }
+		if (ehMobile) { location.href = 'https://metamask.app.link/dapp/luccmick121.github.io/mini-tether/musdt-add.html'; return; }
 		erro.textContent = 'MetaMask não detectada. Instale/ative a extensão, desbloqueie a carteira e recarregue esta página.';
 		erro.style.display = 'block';
 		return;

@@ -122,17 +122,33 @@ function anunciar6963(msEspera = 700) {
     }, msEspera);
   });
 }
+/* Carteira alvo: ?carteira=trust|metamask|okx|bybit|… (sem o parâmetro, comportamento antigo). */
+const ALVO = (new URLSearchParams(location.search).get('carteira') || '').toLowerCase().trim();
+const combina = (a) => {
+  const nome = (a.info?.name || '').toLowerCase();
+  const rdns = (a.info?.rdns || '').toLowerCase();
+  return ALVO && (nome.includes(ALVO) || rdns.includes(ALVO));
+};
 function escolherDosAnuncios(achados) {
   if (!achados.length) return null;
+  window.__carteirasVistas = achados.map(a => a.info?.name || '?');
+  // 1) pedido explícito na URL
+  if (ALVO) {
+    const alvo = achados.find(combina);
+    if (alvo) return { provider: alvo.provider, nome: alvo.info?.name || ALVO, fonte: 'EIP-6963 (alvo)' };
+    return { erro: 'carteira "' + ALVO + '" não anunciou. Vistas: ' + (window.__carteirasVistas.join(', ') || 'nenhuma') };
+  }
+  // 2) padrão: MetaMask, senão a primeira que anunciar
   const porRdns = achados.find(a => /metamask/i.test(a.info?.rdns || ''));
   const porNome = achados.find(a => /^metamask$/i.test((a.info?.name || '').trim()))
                || achados.find(a => /metamask/i.test(a.info?.name || ''));
-  const esc = porRdns || porNome || achados[0]; // aceita qualquer EVM que saiba watchAsset
+  const esc = porRdns || porNome || achados[0];
   return { provider: esc.provider, nome: esc.info?.name || nomeDe(esc.provider), fonte: 'EIP-6963' };
 }
 async function acharProvider() {
   const achados = await anunciar6963();
   const via6963 = escolherDosAnuncios(achados);
+  if (via6963?.erro) { st(via6963.erro, 'err'); return null; }
   if (via6963) return via6963;
   if (window.ethereum && typeof window.ethereum.request === 'function') {
     if (Array.isArray(window.ethereum.providers) && window.ethereum.providers.length) {

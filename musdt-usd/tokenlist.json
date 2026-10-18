@@ -1,0 +1,27 @@
+{
+  "name": "Casa Mini Tether (USD) List",
+  "timestamp": "2026-10-18T19:08:23.000Z",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "tokens": [
+    {
+      "chainId": 1,
+      "address": "0xdAC185b801470F3c3C2c73F33C74a08526A11ec7",
+      "symbol": "USD",
+      "name": "Mini Tether",
+      "decimals": 6,
+      "logoURI": "https://gateway.pinata.cloud/ipfs/bafkreidhnpk6xjjszfpyxa3lvysbhbtu72yu4ybwadjo4i6ob5fmtwt7bi"
+    }
+  ],
+  "keywords": [
+    "casa",
+    "minitether",
+    "usd",
+    "eth",
+    "musdt"
+  ],
+  "logoURI": "https://gateway.pinata.cloud/ipfs/bafkreidhnpk6xjjszfpyxa3lvysbhbtu72yu4ybwadjo4i6ob5fmtwt7bi"
+}

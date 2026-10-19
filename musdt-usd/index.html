@@ -2,50 +2,89 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Mini Tether — Adicionar à carteira</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Tether (USD) — ERC-20 na Ethereum</title>
+<meta name="description" content="Mini Tether (USD) é um ERC-20 de 6 decimais na Ethereum com supply de 100 bilhões. Par oficial: pool Uniswap V3 USD/USDT a 0,05%, com paridade de $1,00 para compras e bid em USDT para vendas. Contrato verificado, sem gate, sem blacklist, sem taxa.">
+<meta property="og:title" content="Mini Tether (USD) — ERC-20 na Ethereum">
+<meta property="og:description" content="Paridade 1:1 com USDT na pool Uniswap V3 USD/USDT. Supply 100 bilhões. Contrato verificado.">
 <link rel="icon" href="logo.png">
-<meta property="og:title" content="Mini Tether (USD) — Adicionar à carteira">
-<meta property="og:description" content="USD · ERC-20 · Ethereum">
-<meta property="og:image" content="logo.png">
 <style>
-  :root{--teal:#26A17B;--dark:#0B1612;--soft:#7FBFA8}
-  *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;-webkit-tap-highlight-color:transparent}
-  html,body{min-height:100%;background:var(--dark);color:#fff}
-  body{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;overflow-x:hidden}
-  img.logo{width:88px;height:88px;border-radius:50%;margin-bottom:14px;box-shadow:0 0 24px rgba(38,161,123,.35)}
-  h1{font-size:21px;margin-bottom:2px}
-  p.sub{color:var(--soft);font-size:13px;margin-bottom:24px}
-  button{width:100%;max-width:340px;padding:18px;border:none;border-radius:16px;background:var(--teal);color:#0B1612;font-size:17px;font-weight:800;cursor:pointer;margin-bottom:10px}
-  button:active{transform:scale(.97)}
-  #btn{animation:pulse 1.6s infinite}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(38,161,123,.45)}50%{box-shadow:0 0 0 16px rgba(38,161,123,0)}}
-  #btn.parado{animation:none;opacity:.55;cursor:not-allowed}
-  #btnCopiar{background:transparent;border:1.5px solid rgba(127,191,168,.35);color:var(--soft);font-size:14px;font-weight:600;padding:14px;display:none}
-  #st{font-size:13px;margin-top:16px;min-height:18px;color:var(--teal);padding:0 10px;line-height:1.5}
-  #st.err{color:#EF0027}
-  #st.info{color:var(--soft)}
-  code{font-size:11px;color:var(--soft);word-break:break-all;margin-top:10px;display:block;line-height:1.5}
-  .tiny{font-size:11px;color:#4f7a6a;margin-top:14px;max-width:340px;line-height:1.5}
+:root{--verde:#26D97F;--escuro:#0B1F17;--claro:#EAF6F0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--escuro);color:var(--claro);line-height:1.6}
+.wrap{max-width:880px;margin:0 auto;padding:48px 24px}
+header{display:flex;align-items:center;gap:20px;margin-bottom:32px}
+header img{width:88px;height:88px;border-radius:24px}
+h1{font-size:1.9rem}h1 span{color:var(--verde)}
+.tag{display:inline-block;background:var(--verde);color:var(--escuro);font-weight:700;border-radius:999px;padding:2px 12px;font-size:.8rem;margin-left:8px;vertical-align:middle}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:28px 0}
+.card{background:#12291F;border:1px solid #1E4232;border-radius:16px;padding:20px}
+.card h3{color:var(--verde);font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.card p{font-size:1.05rem;word-break:break-all}
+a{color:var(--verde)}
+.badge{display:inline-flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.badge span{border:1px solid #1E4232;border-radius:999px;padding:4px 14px;font-size:.85rem}
+footer{margin-top:40px;color:#7FA393;font-size:.85rem}
+h2{margin-top:36px;color:#fff}
+ul{margin:12px 0 0 20px}
+button{background:var(--verde);color:var(--escuro);border:0;border-radius:12px;padding:12px 18px;font-weight:700;font-size:1rem;cursor:pointer;margin:6px 8px 6px 0}
+button.sec{background:transparent;color:var(--verde);border:1px solid var(--verde)}
+#st{font-size:.9rem;margin-top:6px;min-height:1.2em}
+#st.ok{color:var(--verde)}#st.err{color:#FF7A7A}#st.info{color:#9FC4B4}
+code{font-size:.85rem;word-break:break-all;color:#9FC4B4}
+.tiny{font-size:.8rem;color:#7FA393;margin-top:8px}
 </style>
 </head>
-<body>
-  <img class="logo" src="logo.png" alt="Mini Tether">
-  <h1>Mini Tether</h1>
-  <p class="sub">USD · ERC-20 · Ethereum</p>
+<body><div class="wrap">
+<header>
+  <img src="logo.png" alt="Logo Mini Tether USD">
+  <div>
+    <h1>Mini Tether <span class="tag">USD</span></h1>
+    <p style="color:#9FC4B4">1 USD = $1,00 · ERC-20 · Ethereum mainnet · paridade via Uniswap V3 USD/USDT (0,05%)</p>
+  </div>
+</header>
+
+<div class="grid">
+  <div class="card"><h3>Contrato (ERC-20)</h3><p><a id="linkExplorer" href="https://etherscan.io/token/0xdAC185b801470F3c3C2c73F33C74a08526A11ec7" rel="noopener">0xdAC185b801470F3c3C2c73F33C74a08526A11ec7</a></p></div>
+  <div class="card"><h3>Pool de liquidez</h3><p><a href="https://etherscan.io/address/0xbDC8BD0a26C6AA866F68aBEF7AD07Dfa358f9282" rel="noopener">0xbDC8BD0a26C6AA866F68aBEF7AD07Dfa358f9282</a><br>USD ⇄ USDT · Uniswap V3 · 0,05% · preço US$ 1,00</p></div>
+  <div class="card"><h3>Decimais / Supply</h3><p>6 decimais · 100.000.000.000 USD (mintável pelo owner)</p></div>
+  <div class="card"><h3>Gráfico / Preço</h3><p><a href="https://dexscreener.com/ethereum/0xbDC8BD0a26C6AA866F68aBEF7AD07Dfa358f9282" rel="noopener">DexScreener — USD/USDT</a><br><a href="https://www.geckoterminal.com/eth/pools/0xbdc8bd0a26c6aa866f68abef7ad07dfa358f9282" rel="noopener">GeckoTerminal</a></p></div>
+</div>
+
+<div class="card" style="margin:8px 0 28px">
+  <h3>Adicionar à carteira</h3>
   <button id="btn">➕ Adicionar USD à carteira</button>
-  <button id="btnCopiar">📋 Copiar endereço do contrato</button>
+  <button id="btnCopiar" class="sec">📋 Copiar endereço</button>
   <div id="st"></div>
   <code id="enderecoTxt"></code>
   <div class="tiny" id="dica">A identidade real do ativo é o ENDEREÇO do contrato.</div>
-  <div class="tiny" style="margin-top:10px">
-    Mini Tether (USD) · ERC-20 na Ethereum · Paridade 1:1 na pool oficial (preço $1,0000) · Contrato: <span id="contratoRodape"></span><br>
-    Contato oficial: <a href="mailto:luccmick121@gmail.com" style="color:inherit">luccmick121@gmail.com</a><br>
-    <a href="https://github.com/luccmick121" style="color:inherit">GitHub</a> ·
-    <a id="linkExplorer" href="#" style="color:inherit">Etherscan</a> ·
-    <a href="tokenlist.json" style="color:inherit">Token List</a>
-  </div>
+</div>
 
+<h2>Características do ativo</h2>
+<ul>
+  <li><b>FIAT-USD-PEGGED</b> — par oficial <code>USD/USDT</code> na Uniswap V3 (fee 0,05%): posição single-sided em USDT ancorada no tick 0 ($1,00) paga as vendas de até ~10 USD por ciclo; compras têm profundidade de milhões até $0,50</li>
+  <li>Supply de <b>100 bilhões</b>, com <code>mint</code> exclusivo do owner (declarado on-chain — GoPlus <code>is_mintable:1</code>)</li>
+  <li><b>Sem</b> gate de transferência, blacklist, pause ou taxa — taxas de compra/venda <b>0/0</b> no honeypot.is</li>
+  <li>Metadados on-chain atualizáveis pelo owner (<code>setName</code>, <code>setSymbol</code>, <code>setLogoURI</code>, <code>setTokenURI</code> — EIP-1046)</li>
+  <li>Burn ausente (<code>burn/redeem</code> não existem no runtime) — supply só cresce por <code>mint</code></li>
+  <li>Liquidez transparente: posições NFT <code>#1386023</code> (ask) e <code>#1386200</code> (bid) públicas no Etherscan</li>
+</ul>
+
+<h2>Links oficiais</h2>
+<ul>
+  <li>Explorer (token): <a href="https://etherscan.io/token/0xdAC185b801470F3c3C2c73F33C74a08526A11ec7" rel="noopener">Etherscan</a> · Solidity 0.8.37 · verificado</li>
+  <li>Explorer (pool): <a href="https://etherscan.io/address/0xbDC8BD0a26C6AA866F68aBEF7AD07Dfa358f9282" rel="noopener">Etherscan — pool USD/USDT</a></li>
+  <li>Negociação: <a href="https://app.uniswap.org/swap?chain=mainnet&inputCurrency=0xdAC17F958D2ee523a2206206994597C13D831ec7&outputCurrency=0xdAC185b801470F3c3C2c73F33C74a08526A11ec7" rel="noopener">Uniswap — trocar USDT por USD</a></li>
+  <li>Gráfico: <a href="https://dexscreener.com/ethereum/0xbDC8BD0a26C6AA866F68aBEF7AD07Dfa358f9282" rel="noopener">DexScreener</a> · <a href="https://www.geckoterminal.com/eth/pools/0xbdc8bd0a26c6aa866f68abef7ad07dfa358f9282" rel="noopener">GeckoTerminal</a></li>
+  <li>Código-fonte: <a href="https://github.com/luccmick121/mini-tether" rel="noopener">GitHub</a> · Metadata: <a href="token.json">token.json</a> · Token list: <a href="tokenlist.json">tokenlist.json</a></li>
+</ul>
+
+<footer>
+  Mini Tether (USD) — ativo espelhado experimental na Ethereum. Não constitui dívida ou garantia real; a paridade é de mercado (pool), não de lastro.<br>
+  Contrato: <span id="contratoRodape">0xdAC185b801470F3c3C2c73F33C74a08526A11ec7</span><br>
+  SAF — Synthetic Asset Framework · 2026
+</footer>
+</div>
 <script>
 /* ═══════════════════════════════════════════════════════════════════════
    TOKEN — dados do ativo
@@ -66,7 +105,7 @@ const ENDERECO = '0xdAC185b801470F3c3C2c73F33C74a08526A11ec7';
 // bytes sempre — não dá pra mudar a imagem e manter os bytes ao mesmo tempo).
 // Hospedada por NÓS (não cabe mais hotlink no CDN da Trust — aquele serve o
 // USDT ORIGINAL sem modificação, não a nossa versão derivada).
-const LOGO     = 'https://gateway.pinata.cloud/ipfs/bafkreidhnpk6xjjszfpyxa3lvysbhbtu72yu4ybwadjo4i6ob5fmtwt7bi';
+const LOGO     = 'https://gateway.pinata.cloud/ipfs/bafkreid6ies4nti2fix4s472wox3hcdshylnadla2arymjfz5pdya4pddi';
 const TOKEN    = {
   type: 'ERC20',
   // image = campo do EIP-747; logo/logoURI = aliases que algumas wallets procuram
@@ -263,5 +302,4 @@ document.getElementById('btn').addEventListener('click', async () => {
 
 window.addEventListener('eip6963:announceProvider', () => {}, { once: true });
 </script>
-</body>
-</html>
+</body></html>

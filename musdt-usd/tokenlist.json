@@ -1,10 +1,10 @@
 {
-  "name": "Casa Mini Tether (USD) List",
-  "timestamp": "2026-10-18T19:08:23.000Z",
+  "name": "Casa Mini Tether USD List",
+  "timestamp": "2026-10-19T00:47:12.000Z",
   "version": {
     "major": 1,
     "minor": 0,
-    "patch": 0
+    "patch": 1
   },
   "tokens": [
     {
@@ -13,7 +13,7 @@
       "symbol": "USD",
       "name": "Mini Tether",
       "decimals": 6,
-      "logoURI": "https://gateway.pinata.cloud/ipfs/bafkreidhnpk6xjjszfpyxa3lvysbhbtu72yu4ybwadjo4i6ob5fmtwt7bi"
+      "logoURI": "https://luccmick121.github.io/mini-tether/musdt-usd/logo.png"
     }
   ],
   "keywords": [
@@ -23,5 +23,5 @@
     "eth",
     "musdt"
   ],
-  "logoURI": "https://gateway.pinata.cloud/ipfs/bafkreidhnpk6xjjszfpyxa3lvysbhbtu72yu4ybwadjo4i6ob5fmtwt7bi"
+  "logoURI": "https://luccmick121.github.io/mini-tether/musdt-usd/logo.png"
 }

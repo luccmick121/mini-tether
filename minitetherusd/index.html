@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mini Tether USD (USD) — TRC-20</title>
+<meta name="description" content="Mini Tether USD (USD), token TRC-20 com supply fixo de 100 bilhões e 6 decimais. Contrato, source e registros públicos.">
+<style>
+:root{--bg:#0b1512;--card:#10241c;--line:#1f4637;--fg:#edf8f2;--muted:#9fc3b4;--accent:#26d97f}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(1200px 600px at 20% 0%,#163b2c 0%,var(--bg) 55%);color:var(--fg);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+main{max-width:860px;margin:0 auto;padding:48px 20px 72px}a{color:var(--accent)}h1{font-size:clamp(28px,5vw,46px);margin:18px 0 6px}h2{font-size:20px;margin:0 0 12px}.muted{color:var(--muted)}
+.hero{display:flex;gap:20px;align-items:center;flex-wrap:wrap}.hero img{width:108px;height:108px;border-radius:24px;border:1px solid var(--line)}
+.badge{display:inline-block;border:1px solid var(--line);background:#0d1d16;color:var(--muted);border-radius:999px;padding:3px 10px;font-size:12px;letter-spacing:.4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:24px 0}
+.card{background:linear-gradient(180deg,#10241c,#0d1b15);border:1px solid var(--line);border-radius:14px;padding:18px}
+table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:7px 0;border-bottom:1px solid #173428;font-size:14px}th{color:var(--muted);font-weight:500;width:42%}code{font-size:12px;word-break:break-all;color:#c9f7df}
+.notice{border-left:3px solid var(--accent);padding:12px 14px;background:#0d1d16;border-radius:0 10px 10px 0;margin:18px 0;color:var(--muted)}
+ul{padding-left:20px}li{margin:6px 0}.footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<header class="hero">
+<img src="logo.png" alt="Mini Tether USD">
+<div>
+<div class="badge">TRC-20 · TRON mainnet</div>
+<h1>Mini Tether USD <span class="muted">(USD)</span></h1>
+<p class="muted">Token técnico de 6 decimais, supply fixo de 100.000.000.000, sem proxy, taxa ou pausa. Não é o USDT oficial.</p>
+</div>
+</header>
+
+<div class="grid">
+<section class="card"><h2>Contrato</h2><table>
+<tr><th>Endereço</th><td><code>TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6</code></td></tr>
+<tr><th>Nome / símbolo</th><td>Mini Tether USD / USD</td></tr>
+<tr><th>Decimais</th><td>6</td></tr>
+<tr><th>Supply</th><td>100.000.000.000 (fixo no construtor)</td></tr>
+<tr><th>Owner</th><td><code>TP3fqwTHrEnG5AqbJEUyQbCmmETqUXknvg</code></td></tr>
+</table></section>
+<section class="card"><h2>Verificação</h2><table>
+<tr><th>Source</th><td>submetido ao Tronscan (compiler 0.8.6, Berlin, otimizador on, runs 1)</td></tr>
+<tr><th>Deploy</th><td><code>6246edb5…0485a1</code> · bloco 87847661</td></tr>
+<tr><th>Deploy fee</th><td>6,373 TRX (energia coberta por aluguel TEM)</td></tr>
+<tr><th>Status</th><td>aguardando indexação do source/reputação no explorador</td></tr>
+</table></section>
+</div>
+
+<section class="card">
+<h2>Superfície do contrato</h2>
+<div class="grid" style="margin:12px 0 0">
+<div><strong>ERC-20/TRC-20</strong><ul><li>transfer / transferFrom / approve</li><li>balanceOf / allowance / totalSupply</li><li>name / symbol / decimals</li></ul></div>
+<div><strong>Administração (owner)</strong><ul><li>mint(address,uint256)</li><li>burn(uint256)</li><li>blacklist / unBlacklist</li><li>setName / setSymbol / transferOwnership</li></ul></div>
+</div>
+<p class="muted" style="margin:12px 0 0">Os privilégios de owner são declarados aqui e no source. O supply inicial está 100% na carteira do issuer.</p>
+</section>
+
+<div class="notice">Este é um ativo sintético/técnico da casa, não o Tether USD oficial. O endereço do contrato é a única identidade válida; símbolo e nome não autenticam um ativo.</div>
+
+<section class="card">
+<h2>Links</h2>
+<ul>
+<li><a href="https://tronscan.org/#/token20/TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6">Tronscan — token</a></li>
+<li><a href="https://tronscan.org/#/contract/TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6">Tronscan — contrato</a></li>
+<li><a href="https://github.com/luccmick121/criador-de-contrato-trx">Repositório do projeto</a> (privado/controle do operador)</li>
+<li><a href="https://github.com/luccmick121/mini-tether">Site da casa</a></li>
+</ul>
+</section>
+
+<footer class="footer">Documento técnico. Nada aqui é promessa de preço, lastro ou listagem. Source: <code>contracts/MiniTetherUSD.sol</code>.</footer>
+</main>
+</body>
+</html>

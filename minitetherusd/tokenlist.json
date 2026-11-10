@@ -1,0 +1,25 @@
+{
+  "name": "SAF Casa TRON mainnet",
+  "timestamp": "2026-11-10T00:30:00.000Z",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "logoURI": "https://luccmick121.github.io/mini-tether/minitetherusd/logo.png",
+  "keywords": [
+    "saf",
+    "tron",
+    "trc20"
+  ],
+  "tokens": [
+    {
+      "chainId": 728126428,
+      "address": "TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6",
+      "name": "Mini Tether USD",
+      "symbol": "USD",
+      "decimals": 6,
+      "logoURI": "https://luccmick121.github.io/mini-tether/minitetherusd/logo.png"
+    }
+  ]
+}

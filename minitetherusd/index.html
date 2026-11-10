@@ -3,72 +3,181 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mini Tether USD (USD) — TRC-20</title>
-<meta name="description" content="Mini Tether USD (USD), token TRC-20 com supply inicial fixo de 100 bilhões e 6 decimais. Contrato, source e registros públicos.">
-<meta name="keywords" content="Mini Tether USD, USD, TRC20, TRON, synthetic USD, stablecoin, TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6">
+<title>Mini Tether USD (USD) — TRC-20 na TRON</title>
+<meta name="description" content="Mini Tether USD (USD), token TRC-20 na TRON mainnet com 6 decimais e 100 bilhões iniciais. Supply variável (mint do owner). Não é o USDT oficial, não tem lastro nem paridade. Contrato verificado, sem pool.">
+<meta name="keywords" content="Mini Tether USD, USD, TRC20, TRON, token, contrato verificado, TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6">
+<meta property="og:title" content="Mini Tether USD (USD) — TRC-20">
+<meta property="og:description" content="Token TRC-20 de 6 decimais com 100 bilhões iniciais. Supply variável. Não é o USDT oficial; sem lastro e sem paridade.">
+<meta property="og:type" content="website">
+<link rel="icon" href="logo.png">
 <style>
-:root{--bg:#0b1512;--card:#10241c;--line:#1f4637;--fg:#edf8f2;--muted:#9fc3b4;--accent:#26d97f}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(1200px 600px at 20% 0%,#163b2c 0%,var(--bg) 55%);color:var(--fg);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-main{max-width:860px;margin:0 auto;padding:48px 20px 72px}a{color:var(--accent)}h1{font-size:clamp(28px,5vw,46px);margin:18px 0 6px}h2{font-size:20px;margin:0 0 12px}.muted{color:var(--muted)}
-.hero{display:flex;gap:20px;align-items:center;flex-wrap:wrap}.hero img{width:108px;height:108px;border-radius:24px;border:1px solid var(--line)}
-.badge{display:inline-block;border:1px solid var(--line);background:#0d1d16;color:var(--muted);border-radius:999px;padding:3px 10px;font-size:12px;letter-spacing:.4px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:24px 0}
+:root{--bg:#0b1512;--card:#10241c;--line:#1f4637;--fg:#edf8f2;--muted:#9fc3b4;--accent:#26d97f;--warn:#f0b429}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 20% 0%,#163b2c 0%,var(--bg) 55%);color:var(--fg);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+main{max-width:880px;margin:0 auto;padding:48px 22px 72px}
+a{color:var(--accent)}
+h1{font-size:clamp(28px,5vw,44px);margin:14px 0 4px;line-height:1.1}
+h2{font-size:20px;margin:0 0 12px}
+h3{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);margin:0 0 6px}
+.muted{color:var(--muted)}
+.hero{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.hero img{width:96px;height:96px;border-radius:24px;border:1px solid var(--line)}
+.tag{display:inline-block;background:var(--accent);color:#06231a;font-weight:800;border-radius:999px;padding:1px 11px;font-size:13px;vertical-align:middle;margin-left:8px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.badges span{border:1px solid var(--line);background:#0d1d16;color:var(--muted);border-radius:999px;padding:3px 11px;font-size:12.5px;letter-spacing:.2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:26px 0}
 .card{background:linear-gradient(180deg,#10241c,#0d1b15);border:1px solid var(--line);border-radius:14px;padding:18px}
-table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:7px 0;border-bottom:1px solid #173428;font-size:14px}th{color:var(--muted);font-weight:500;width:42%}code{font-size:12px;word-break:break-all;color:#c9f7df}
-.notice{border-left:3px solid var(--accent);padding:12px 14px;background:#0d1d16;border-radius:0 10px 10px 0;margin:18px 0;color:var(--muted)}
-ul{padding-left:20px}li{margin:6px 0}.footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.card p{margin:0;word-break:break-all;font-size:14.5px}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#c9f7df;background:#0a1a14;border:1px solid #173428;border-radius:8px;padding:8px 10px;display:block;margin-top:6px;overflow-wrap:anywhere}
+.notice{border-left:3px solid var(--accent);padding:12px 14px;background:#0d1d16;border-radius:0 10px 10px 0;margin:18px 0;color:var(--muted);font-size:14.5px}
+.alert{border-left:3px solid var(--warn);padding:12px 14px;background:#1c1710;border-radius:0 10px 10px 0;margin:18px 0;color:#e8d9b8;font-size:14.5px}
+ul{padding-left:20px;margin:10px 0 0}
+li{margin:7px 0}
+table{width:100%;border-collapse:collapse;margin-top:6px}
+td,th{text-align:left;padding:8px 0;border-bottom:1px solid #173428;font-size:14.5px;vertical-align:top}
+th{color:var(--muted);font-weight:500;width:42%}
+.btn{appearance:none;border:1px solid var(--accent);background:transparent;color:var(--accent);font:inherit;font-weight:700;border-radius:10px;padding:11px 18px;cursor:pointer}
+.btn:hover{background:#10301f}
+.btn:disabled{opacity:.6;cursor:default}
+.status{font-size:13.5px;margin-top:10px;color:var(--muted)}
+.status.ok{color:var(--accent)}
+.status.err{color:#ff9d8a}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+code{font-size:12.5px;color:#c9f7df}
 </style>
 </head>
 <body>
 <main>
+
 <header class="hero">
-<img src="logo.png" alt="Mini Tether USD">
-<div>
-<div class="badge">TRC-20 · TRON mainnet</div>
-<span class="badge">Synthetic USD</span>
-<h1>Mini Tether USD <span class="muted">(USD)</span></h1>
-<p class="muted">Token técnico de 6 decimais, supply fixo de 100.000.000.000, sem proxy, taxa ou pausa. Não é o USDT oficial.</p>
-</div>
+  <img src="logo.png" alt="Mini Tether USD">
+  <div>
+    <h1>Mini Tether USD <span class="tag">USD</span></h1>
+    <p class="muted">TRC-20 · TRON mainnet · 6 decimais · supply inicial de 100.000.000.000</p>
+    <div class="badges">
+      <span>Contrato verificado no Tronscan</span>
+      <span>Supply variável (mint do owner)</span>
+      <span>Sem proxy · sem taxa · sem pausa</span>
+      <span>Sem pool · sem preço</span>
+    </div>
+  </div>
 </header>
 
+<div class="alert"><b>Não é o USDT oficial e não tem lastro.</b> Mini Tether USD é um token independente, emitido por este projeto. Não há reserva, resgate ou paridade de R$ 1 / US$ 1 — nem com o Tether USD nem com qualquer moeda. O supply não é fixo: o <code>owner</code> pode cunhar. O endereço do contrato é a única identidade válida.</div>
+
 <div class="grid">
-<section class="card"><h2>Contrato</h2><table>
-<tr><th>Endereço</th><td><code>TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6</code></td></tr>
-<tr><th>Nome / símbolo</th><td>Mini Tether USD / USD</td></tr>
-<tr><th>Decimais</th><td>6</td></tr>
-<tr><th>Supply</th><td>100.000.000.000 (fixo no construtor)</td></tr>
-<tr><th>Owner</th><td><code>TP3fqwTHrEnG5AqbJEUyQbCmmETqUXknvg</code></td></tr>
-</table></section>
-<section class="card"><h2>Verificação</h2><table>
-<tr><th>Source</th><td>submetido ao Tronscan (compiler 0.8.6, Berlin, otimizador on, runs 1)</td></tr>
-<tr><th>Deploy</th><td><code>6246edb5…0485a1</code> · bloco 87847661</td></tr>
-<tr><th>Deploy fee</th><td>6,373 TRX (energia coberta por aluguel TEM)</td></tr>
-<tr><th>Status</th><td>aguardando indexação do source/reputação no explorador</td></tr>
-</table></section>
+  <div class="card">
+    <h3>Contrato (TRC-20)</h3>
+    <p><a href="https://tronscan.org/#/token20/TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6" rel="noopener">TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6</a></p>
+    <span class="code">TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6</span>
+  </div>
+  <div class="card">
+    <h3>Decimais / Supply</h3>
+    <p>6 decimais · <b>100.000.000.000</b> iniciais<br><span class="muted">Não é fixo: <code>mint</code> owner-only; <code>burn</code> pelo titular.</span></p>
+  </div>
+  <div class="card">
+    <h3>Verificação</h3>
+    <p>Source verificado no Tronscan (<code>verify_status 2</code>)<br><span class="muted">Token Info/reputação (logo, descrição) ainda pendentes no explorador.</span></p>
+  </div>
+  <div class="card">
+    <h3>Liquidez / Preço</h3>
+    <p><b>Não existe pool.</b><br><span class="muted">Sem DEX, sem cotação, sem volume. Carteira mostra saldo, não valor.</span></p>
+  </div>
 </div>
 
 <section class="card">
-<h2>Superfície do contrato</h2>
-<div class="grid" style="margin:12px 0 0">
-<div><strong>ERC-20/TRC-20</strong><ul><li>transfer / transferFrom / approve</li><li>balanceOf / allowance / totalSupply</li><li>name / symbol / decimals</li></ul></div>
-<div><strong>Administração (owner)</strong><ul><li>mint(address,uint256)</li><li>burn(uint256)</li><li>blacklist / unBlacklist</li><li>setName / setSymbol / transferOwnership</li></ul></div>
-</div>
-<p class="muted" style="margin:12px 0 0">Os privilégios de owner são declarados aqui e no source. O supply inicial está 100% na carteira do issuer.</p>
+  <h2>Adicionar à carteira</h2>
+  <p class="muted" style="margin:0 0 12px">Pede à TronLink (ou provedor TRON compatível) do seu navegador para adicionar o token à sua lista. Não é transação, não tem taxa. A logo exibida depende do catálogo da carteira — este pedido não pinta o ícone.</p>
+  <div class="row">
+    <button id="btn" class="btn">➕ Adicionar USD à carteira</button>
+    <button id="btnCopiar" class="btn">Copiar endereço</button>
+  </div>
+  <div id="status" class="status"></div>
 </section>
 
-<div class="notice">Este é um ativo sintético/técnico da casa, não o Tether USD oficial. O endereço do contrato é a única identidade válida; símbolo e nome não autenticam um ativo.</div>
+<h2 style="margin-top:32px">Características do ativo</h2>
+<table>
+  <tr><th>Padrão</th><td>TRC-20 (TRON), 6 decimais, compatível com ERC-20 na interface</td></tr>
+  <tr><th>Supply</th><td>100.000.000.000 iniciais; <b>variável</b> — <code>mint(address,uint256)</code> só do owner, <code>burn(uint256)</code> do titular</td></tr>
+  <tr><th>Poderes do owner</th><td><code>mint</code> · <code>blacklist</code>/<code>unBlacklist</code> · <code>setName</code> · <code>setSymbol</code> · <code>transferOwnership</code></td></tr>
+  <tr><th>O que não existe</th><td>proxy/upgrade, taxa de transferência, pausa, resgate, metadata on-chain (<code>logoURI</code>/<code>tokenURI</code>)</td></tr>
+  <tr><th>Endereço do owner</th><td><code>TP3fqwTHrEnG5AqbJEUyQbCmmETqUXknvg</code></td></tr>
+  <tr><th>Reputação no explorador</th><td><code>Suspicious</code> — declarado, ver whitepaper §4.2 (o nome contém "Tether", o que dispara anti-mimicry)</td></tr>
+  <tr><th>Liquidez</th><td>nenhuma pool criada em qualquer DEX</td></tr>
+</table>
 
-<section class="card">
-<h2>Links</h2>
+<div class="notice">O símbolo <code>USD</code> não autentica nada: qualquer contrato pode usá-lo. Quem confere o ativo é o endereço, nunca o nome ou a logo. Nome e símbolo podem até ser alterados pelo <code>owner</code>.</div>
+
+<div class="grid">
+  <div class="card">
+    <h3>Whitepaper</h3>
+    <p><a href="whitepaper.html">Mini Tether USD — Whitepaper técnico v1.0</a><br><span class="muted">Arquitetura, poderes do owner, riscos declarados, como verificar por conta própria.</span></p>
+  </div>
+  <div class="card">
+    <h3>Registro público</h3>
+    <p><a href="token.json">token.json</a> · <a href="tokenlist.json">tokenlist.json</a><br><span class="muted">Metadata de referência (o contrato não implementa <code>tokenURI</code>).</span></p>
+  </div>
+</div>
+
+<h2 style="margin-top:32px">Links oficiais</h2>
 <ul>
-<li><a href="https://tronscan.org/#/token20/TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6">Tronscan — token</a></li>
-<li><a href="https://tronscan.org/#/contract/TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6">Tronscan — contrato</a></li>
-<li><a href="https://github.com/luccmick121/criador-de-contrato-trx">Repositório do projeto</a> (privado/controle do operador)</li>
-<li><a href="https://github.com/luccmick121/mini-tether">Site da casa</a></li>
+  <li><a href="https://tronscan.org/#/token20/TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6" rel="noopener">Tronscan — token</a></li>
+  <li><a href="https://tronscan.org/#/contract/TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6" rel="noopener">Tronscan — contrato (source verificado)</a></li>
+  <li><a href="whitepaper.html">Whitepaper técnico</a></li>
+  <li><a href="https://github.com/luccmick121/mini-tether" rel="noopener">Repositório público</a></li>
+  <li><a href="https://etherscan.io/token/0xdAC185b801470F3c3C2c73F33C74a08526A11ec7" rel="noopener">Par ERC-20 na Ethereum (Mini Tether / USD, contrato separado)</a></li>
+  <li><a href="https://gateway.pinata.cloud/ipfs/bafkreigazzf2hrr7wzm4c5pa344vtuwbfwicxigsp5iuj4wjc5sdhgrrca" rel="noopener">Logo no IPFS (CID immutável)</a></li>
 </ul>
-</section>
 
-<footer class="footer">Documento técnico. Nada aqui é promessa de preço, lastro ou listagem. Source: <code>contracts/MiniTetherUSD.sol</code>.</footer>
+<footer class="footer">
+  <p><b>Contato:</b> <a href="mailto:minitetherusd@gmail.com">minitetherusd@gmail.com</a></p>
+  <p>Documento técnico. Nada aqui é promessa de preço, lastro, listagem ou liquidez. Não é oferta nem recomendação. O token pode não ter mercado, não aparecer em carteiras e pode valer zero.</p>
+  <p>Source de referência: <code>contracts/MiniTetherUSD.sol</code> · ficha e provas em <code>assets/minitetherusd/registro-publico/</code>.</p>
+</footer>
+
 </main>
+
+<script>
+const TOKEN = {
+  address: 'TR7jQjoBD5gzmkmhjSErpjdQ9jFWdgpLj6',
+  symbol: 'USD',
+  decimals: 6,
+  image: 'https://luccmick121.github.io/mini-tether/minitetherusd/logo.png'
+};
+const btn = document.getElementById('btn');
+const st = (msg, cls = '') => { const el = document.getElementById('status'); el.textContent = msg; el.className = 'status ' + cls; };
+
+function provedorTron() {
+  if (window.tron && typeof window.tron.request === 'function') return window.tron;
+  if (window.tronLink && window.tronLink.tronWeb) return window.tronLink;
+  return null;
+}
+
+btn.addEventListener('click', async () => {
+  const p = provedorTron();
+  if (!p) {
+    st('TronLink não encontrada neste navegador. Instale/desbloqueie a extensão ou use "Copiar endereço" e importe o token manualmente.', 'err');
+    return;
+  }
+  btn.disabled = true;
+  st('Pedindo permissão à carteira…');
+  try {
+    const res = await p.request({ method: 'wallet_watchAsset', params: { type: 'trc20', options: TOKEN } });
+    if (res === false) { st('A carteira recusou o pedido. Tente novamente.', 'err'); }
+    else { st('Token adicionado. A logo pode continuar genérica: ela vem do catálogo da carteira, não deste pedido.', 'ok'); btn.textContent = '✓ Adicionado'; }
+  } catch (e) {
+    const msg = String(e && e.message ? e.message : e);
+    st('Não foi possível adicionar automaticamente: ' + msg.slice(0, 120) + ' — use "Copiar endereço" e importe manualmente.', 'err');
+  } finally {
+    if (btn.textContent !== '✓ Adicionado') btn.disabled = false;
+  }
+});
+
+document.getElementById('btnCopiar').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(TOKEN.address); st('Endereço copiado. Cole em "Importar token" na sua carteira.', 'ok'); }
+  catch (_) { st('Copie manualmente: ' + TOKEN.address, ''); }
+});
+</script>
 </body>
 </html>

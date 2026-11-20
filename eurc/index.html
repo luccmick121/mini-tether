@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Eurc (UERC) — adicionar à carteira</title>
+<style>
+  :root { --bg:#0b1020; --card:#131a2e; --fg:#e8eefc; --mut:#9fb0d0; --ac:#3b6ef6; }
+  *{box-sizing:border-box} body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--fg)}
+  .wrap{max-width:560px;margin:0 auto;padding:28px 18px}
+  .card{background:var(--card);border:1px solid #223055;border-radius:16px;padding:22px;margin:14px 0}
+  .head{display:flex;align-items:center;gap:14px}
+  .head img{width:72px;height:72px;border-radius:50%;background:#fff}
+  h1{font-size:22px;margin:0} .sym{color:var(--mut);font-size:14px}
+  .row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #1e2a49;font-size:14px}
+  .row b{color:var(--mut);font-weight:500} .mono{font-family:ui-monospace,Menlo,monospace;font-size:12px;word-break:break-all}
+  button{width:100%;padding:14px;border:0;border-radius:12px;background:var(--ac);color:#fff;font-size:16px;font-weight:600;cursor:pointer;margin-top:10px}
+  button.sec{background:#1b2746;border:1px solid #2e3f6b}
+  .msg{margin-top:12px;font-size:14px;color:var(--mut);min-height:20px}
+  a{color:#7aa2ff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="head">
+      <img id="logo" src="logo.png" alt="Eurc" />
+      <div><h1>UERC</h1><div class="sym">Eurc · Ethereum · 18 decimais</div></div>
+    </div>
+    <div class="row"><b>Contrato</b><span class="mono" id="addr">0x4420743D4324c45E84839705E04DC6b980bC360F</span></div>
+    <div class="row"><b>Rede</b><span>Ethereum (chainId 1)</span></div>
+    <div class="row"><b>Pool</b><span><a href="https://dexscreener.com/ethereum/0xdbAF0CD1019B8332F3404E4f4ce7D733E07529Cd" target="_blank">DexScreener</a></span></div>
+    <button id="add">Adicionar à carteira</button>
+    <button class="sec" id="copy">Copiar endereço</button>
+    <div class="msg" id="msg"></div>
+  </div>
+  <div class="card" style="font-size:13px;color:var(--mut)">
+    Links: <a href="https://etherscan.io/token/0x4420743D4324c45E84839705E04DC6b980bC360F" target="_blank">Etherscan</a> ·
+    <a href="tokenlist.json" target="_blank">Token List</a> ·
+    <a href="token.json" target="_blank">Metadata</a>
+  </div>
+</div>
+<script>
+const ADDR="0x4420743D4324c45E84839705E04DC6b980bC360F";
+const IMG=location.href.replace(/[^/]*$/,"")+"logo.png";
+const msg=(t)=>document.getElementById("msg").textContent=t;
+document.getElementById("copy").onclick=async()=>{try{await navigator.clipboard.writeText(ADDR);msg("Endereço copiado.");}catch{msg(ADDR);}};
+document.getElementById("add").onclick=async()=>{
+  const p=window.ethereum;
+  if(!p){msg("Abra esta página no navegador da sua carteira (MetaMask/Trust) ou com a extensão instalada.");return;}
+  try{
+    // garante a chain ativa antes (evita 'no active chain info')
+    let cid=await p.request({method:"eth_chainId"}).catch(()=>null);
+    if(!cid){ await p.request({method:"eth_requestAccounts"}); cid=await p.request({method:"eth_chainId"}); }
+    if(cid!=="0x1"){ try{ await p.request({method:"wallet_switchEthereumChain",params:[{chainId:"0x1"}]}); }catch(e){ if(e.code===4902){ await p.request({method:"wallet_addEthereumChain",params:[{chainId:"0x1",chainName:"Ethereum",nativeCurrency:{name:"Ether",symbol:"ETH",decimals:18},rpcUrls:["https://eth.drpc.org"],blockExplorerUrls:["https://etherscan.io"]}]}); } } }
+    const res=await p.request({method:"wallet_watchAsset",params:{type:"ERC20",options:{address:ADDR,symbol:"Eurc",decimals:18,image:IMG,logo:IMG,logoURI:IMG}}});
+    if(res!==false){ msg("✅ Token adicionado — a logo € deve aparecer na lista."); }
+    else{ msg("Você recusou a adição."); }
+  }catch(e){ msg(e&&e.code===4001?"Você recusou a adição.":("Erro: "+(e&&e.message||e))); }
+};
+</script>
+</body>
+</html>

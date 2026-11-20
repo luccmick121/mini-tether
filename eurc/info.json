@@ -1,0 +1,13 @@
+{
+  "name": "UERC",
+  "type": "ERC20",
+  "symbol": "Eurc",
+  "decimals": 18,
+  "website": "https://luccmick121.github.io/mini-tether/eurc/",
+  "description": "Eurc (UERC) ERC-20 token on Ethereum.",
+  "explorer": "https://etherscan.io/token/0x4420743D4324c45E84839705E04DC6b980bC360F",
+  "status": "active",
+  "id": "0x4420743D4324c45E84839705E04DC6b980bC360F",
+  "links": [],
+  "tags": ["stablecoin"]
+}

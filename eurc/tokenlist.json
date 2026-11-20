@@ -1,0 +1,17 @@
+{
+  "name": "Eurc Token List",
+  "timestamp": "2026-11-20T15:16:46Z",
+  "version": { "major": 1, "minor": 0, "patch": 0 },
+  "keywords": ["eurc"],
+  "logoURI": "https://luccmick121.github.io/mini-tether/eurc/logo.png",
+  "tokens": [
+    {
+      "chainId": 1,
+      "address": "0x4420743D4324c45E84839705E04DC6b980bC360F",
+      "name": "UERC",
+      "symbol": "Eurc",
+      "decimals": 18,
+      "logoURI": "https://luccmick121.github.io/mini-tether/eurc/logo.png"
+    }
+  ]
+}
